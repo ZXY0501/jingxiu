@@ -190,7 +190,6 @@
     font-weight: 400;
   }
 
-  /* Today push card */
   .push-card {
     background: var(--green-mist);
     border: 1px solid var(--green-pale);
@@ -230,7 +229,6 @@
   .tag-review { background: #fde9c9; color: #b07830; }
   .tag-weak { background: #fdd8d8; color: #b04040; }
 
-  /* Progress ring */
   .progress-section {
     display: flex;
     align-items: center;
@@ -240,11 +238,9 @@
   }
 
   .ring-wrap { position: relative; width: 56px; height: 56px; flex-shrink: 0; }
-
   .ring-wrap svg { transform: rotate(-90deg); }
-
   .ring-bg { fill: none; stroke: var(--cream-deeper); stroke-width: 4; }
-  .ring-fill { fill: none; stroke: var(--green-soft); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 138; stroke-dashoffset: 90; transition: stroke-dashoffset 1s ease; }
+  .ring-fill { fill: none; stroke: var(--green-soft); stroke-width: 4; stroke-linecap: round; stroke-dasharray: 138; stroke-dashoffset: 138; transition: stroke-dashoffset 1s ease; }
 
   .ring-label {
     position: absolute;
@@ -261,7 +257,6 @@
   .progress-info h4 { font-size: 13px; color: var(--text-dark); font-weight: 500; margin-bottom: 4px; }
   .progress-info p { font-size: 12px; color: var(--text-soft); line-height: 1.6; }
 
-  /* chapter list */
   .chapter-item {
     display: flex;
     align-items: center;
@@ -287,10 +282,7 @@
   .dot-weak { background: #e8a87c; }
   .dot-todo { background: var(--cream-deeper); border: 1.5px solid var(--border); }
 
-  /* Add chapter inline */
-  .add-chapter-wrap {
-    margin-bottom: 8px;
-  }
+  .add-chapter-wrap { margin-bottom: 8px; }
 
   .add-chapter-btn {
     display: flex;
@@ -308,11 +300,7 @@
     font-family: 'Noto Serif SC', serif;
   }
 
-  .add-chapter-btn:hover {
-    background: var(--green-mist);
-    border-color: var(--green-light);
-    color: var(--green-soft);
-  }
+  .add-chapter-btn:hover { background: var(--green-mist); border-color: var(--green-light); color: var(--green-soft); }
 
   .add-chapter-form {
     display: none;
@@ -340,11 +328,7 @@
 
   .add-chapter-form input:focus { border-color: var(--green-light); }
 
-  .add-chapter-actions {
-    display: flex;
-    gap: 6px;
-    justify-content: flex-end;
-  }
+  .add-chapter-actions { display: flex; gap: 6px; justify-content: flex-end; }
 
   .btn-mini {
     padding: 5px 14px;
@@ -355,31 +339,14 @@
     transition: all 0.2s;
   }
 
-  .btn-mini-ghost {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text-soft);
-  }
-
+  .btn-mini-ghost { background: transparent; border: 1px solid var(--border); color: var(--text-soft); }
   .btn-mini-ghost:hover { border-color: var(--text-muted); color: var(--text-mid); }
-
-  .btn-mini-green {
-    background: var(--green-soft);
-    border: 1px solid var(--green-soft);
-    color: white;
-  }
-
+  .btn-mini-green { background: var(--green-soft); border: 1px solid var(--green-soft); color: white; }
   .btn-mini-green:hover { background: #7a9b6e; }
 
   /* ── CENTER ── */
-  .center {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+  .center { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
-  /* Welcome card */
   #welcome-view {
     flex: 1;
     display: flex;
@@ -389,20 +356,11 @@
     overflow-y: auto;
   }
 
-  .welcome-card {
-    max-width: 580px;
-    width: 100%;
-    animation: fadeUp 0.6s ease;
-  }
+  .welcome-card { max-width: 580px; width: 100%; animation: fadeUp 0.6s ease; }
 
   @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
-  .welcome-date {
-    font-size: 12px;
-    color: var(--text-muted);
-    letter-spacing: 0.1em;
-    margin-bottom: 32px;
-  }
+  .welcome-date { font-size: 12px; color: var(--text-muted); letter-spacing: 0.1em; margin-bottom: 32px; }
 
   .welcome-title {
     font-family: 'Lora', serif;
@@ -413,10 +371,7 @@
     margin-bottom: 8px;
   }
 
-  .welcome-title em {
-    font-style: italic;
-    color: var(--green-soft);
-  }
+  .welcome-title em { font-style: italic; color: var(--green-soft); }
 
   .welcome-sub {
     font-size: 14px;
@@ -426,12 +381,7 @@
     font-weight: 300;
   }
 
-  .welcome-cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 28px;
-  }
+  .welcome-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
 
   .info-card {
     background: white;
@@ -468,13 +418,7 @@
   .start-btn:hover { background: #7a9b6e; box-shadow: 0 6px 20px rgba(138, 171, 126, 0.4); transform: translateY(-1px); }
   .start-btn:active { transform: translateY(0); }
 
-  /* Study view */
-  #study-view {
-    flex: 1;
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-  }
+  #study-view { flex: 1; display: none; flex-direction: column; overflow: hidden; }
 
   .study-header {
     padding: 20px 32px 16px;
@@ -486,22 +430,8 @@
   }
 
   .study-title { font-size: 16px; font-weight: 500; color: var(--text-dark); }
-  .study-chip {
-    font-size: 11px;
-    padding: 3px 10px;
-    background: var(--green-pale);
-    color: var(--green-soft);
-    border-radius: 10px;
-  }
-
-  .study-timer {
-    margin-left: auto;
-    font-size: 13px;
-    color: var(--text-soft);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
+  .study-chip { font-size: 11px; padding: 3px 10px; background: var(--green-pale); color: var(--green-soft); border-radius: 10px; }
+  .study-timer { margin-left: auto; font-size: 13px; color: var(--text-soft); display: flex; align-items: center; gap: 6px; }
 
   .chat-messages {
     flex: 1;
@@ -552,16 +482,9 @@
     box-shadow: 0 2px 8px var(--shadow);
   }
 
-  .msg.user .msg-bubble {
-    background: var(--green-mist);
-    border-color: var(--green-pale);
-  }
+  .msg.user .msg-bubble { background: var(--green-mist); border-color: var(--green-pale); }
 
-  .input-area {
-    padding: 14px 28px 20px;
-    border-top: 1px solid var(--border-light);
-    flex-shrink: 0;
-  }
+  .input-area { padding: 14px 28px 20px; border-top: 1px solid var(--border-light); flex-shrink: 0; }
 
   .input-wrap {
     display: flex;
@@ -575,10 +498,7 @@
     transition: border-color 0.2s, box-shadow 0.2s;
   }
 
-  .input-wrap:focus-within {
-    border-color: var(--green-light);
-    box-shadow: 0 2px 10px var(--shadow), 0 0 0 3px rgba(138,171,126,0.12);
-  }
+  .input-wrap:focus-within { border-color: var(--green-light); box-shadow: 0 2px 10px var(--shadow), 0 0 0 3px rgba(138,171,126,0.12); }
 
   textarea {
     flex: 1;
@@ -613,69 +533,23 @@
   .send-btn:hover { background: #7a9b6e; transform: scale(1.05); }
   .send-btn:active { transform: scale(0.96); }
 
-  .input-hint {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 8px;
-    padding: 0 4px;
-  }
+  .input-hint { font-size: 11px; color: var(--text-muted); margin-top: 8px; padding: 0 4px; }
 
   /* ── RIGHT PANEL ── */
-  .right-panel {
-    width: 260px;
-    min-width: 260px;
-    border-left: 1px solid var(--border-light);
-    background: var(--cream);
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-  }
-
+  .right-panel { width: 260px; min-width: 260px; border-left: 1px solid var(--border-light); background: var(--cream); overflow-y: auto; display: flex; flex-direction: column; }
   .right-panel::-webkit-scrollbar { width: 4px; }
   .right-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-  .right-section {
-    padding: 20px;
-    border-bottom: 1px solid var(--border-light);
-  }
+  .right-section { padding: 20px; border-bottom: 1px solid var(--border-light); }
+  .right-title { font-size: 10px; letter-spacing: 0.16em; color: var(--text-muted); margin-bottom: 14px; }
 
-  .right-title {
-    font-size: 10px;
-    letter-spacing: 0.16em;
-    color: var(--text-muted);
-    margin-bottom: 14px;
-  }
-
-  /* behavior tags */
-  .tag-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 10px;
-  }
-
+  .tag-item { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
   .tag-name { font-size: 12px; color: var(--text-mid); flex: 1; }
-
-  .tag-bar-wrap {
-    width: 72px;
-    height: 4px;
-    background: var(--cream-deeper);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .tag-bar {
-    height: 100%;
-    border-radius: 2px;
-    background: var(--green-soft);
-    transition: width 1s ease;
-  }
-
+  .tag-bar-wrap { width: 72px; height: 4px; background: var(--cream-deeper); border-radius: 2px; overflow: hidden; }
+  .tag-bar { height: 100%; border-radius: 2px; background: var(--green-soft); transition: width 1s ease; }
   .tag-bar.warn { background: #e8a87c; }
-
   .tag-val { font-size: 11px; color: var(--text-soft); width: 24px; text-align: right; }
 
-  /* report log */
   .log-item {
     padding: 10px 12px;
     background: white;
@@ -687,7 +561,6 @@
   }
 
   .log-item:hover { box-shadow: 0 2px 8px var(--shadow); }
-
   .log-date { font-size: 10px; color: var(--text-muted); margin-bottom: 4px; }
   .log-title { font-size: 12.5px; color: var(--text-dark); line-height: 1.5; }
   .log-tag { display: inline-block; font-size: 10px; padding: 1px 6px; background: var(--green-pale); color: var(--green-soft); border-radius: 6px; margin-top: 4px; }
@@ -737,7 +610,7 @@
 
   .modal-btn:hover { background: #7a9b6e; }
 
-  /* ── REPORT INPUT MODAL ── */
+  /* ── REPORT MODAL ── */
   .report-modal {
     background: var(--cream);
     border: 1px solid var(--border);
@@ -782,7 +655,6 @@
   }
 
   .report-modal textarea:focus { border-color: var(--green-light); }
-
   .modal-btns { display: flex; gap: 10px; justify-content: flex-end; }
 
   .btn-ghost {
@@ -798,7 +670,6 @@
   }
 
   .btn-ghost:hover { border-color: var(--text-muted); color: var(--text-mid); }
-
   .btn-green {
     padding: 10px 20px;
     background: var(--green-soft);
@@ -816,7 +687,6 @@
 </head>
 <body>
 
-<!-- TOP NAV -->
 <nav class="topnav">
   <div class="brand">
     <div class="brand-icon">🌿</div>
@@ -825,73 +695,45 @@
   <div class="nav-tabs">
     <div class="nav-tab active" onclick="switchTab(this,'welcome')">今日</div>
     <div class="nav-tab" onclick="switchTab(this,'study')">学习</div>
-    <div class="nav-tab disabled">
-      知识树
-      <span class="tab-badge">二期上线</span>
-    </div>
-    <div class="nav-tab disabled">
-      复盘
-      <span class="tab-badge">二期上线</span>
-    </div>
+    <div class="nav-tab disabled">知识树<span class="tab-badge">二期上线</span></div>
+    <div class="nav-tab disabled">复盘<span class="tab-badge">二期上线</span></div>
   </div>
   <div class="nav-right">
-    <div class="timer-chip" onclick="showBreakNow()">
-      <div class="dot"></div>
-      <span id="timer-display">专注中 00:00</span>
-    </div>
+    <div class="timer-chip" onclick="showBreakNow()"><div class="dot"></div><span id="timer-display">专注中 00:00</span></div>
     <div class="timer-chip" style="cursor:pointer" onclick="openReport()">📋 写入学习报告</div>
   </div>
 </nav>
 
-<!-- MAIN -->
 <div class="main">
-
-  <!-- LEFT PANEL -->
   <div class="left-panel">
-    <!-- today push -->
     <div class="panel-section">
       <div class="section-title">今日复习推送</div>
       <div class="push-card">
         <div class="push-card-label">艾宾浩斯 · 今日应复习</div>
-        <div class="push-item">
-          <span class="tag tag-weak">薄弱</span>
-          IS-LM模型政策效果比较
-        </div>
-        <div class="push-item">
-          <span class="tag tag-review">复习</span>
-          货币层次划分（M0/M1/M2）
-        </div>
-        <div class="push-item">
-          <span class="tag tag-review">复习</span>
-          泰勒规则与利率调控
-        </div>
+        <div class="push-item"><span class="tag tag-weak">薄弱</span>IS-LM模型政策效果比较</div>
+        <div class="push-item"><span class="tag tag-review">复习</span>货币层次划分（M0/M1/M2）</div>
+        <div class="push-item"><span class="tag tag-review">复习</span>泰勒规则与利率调控</div>
       </div>
     </div>
 
-    <!-- progress -->
     <div class="progress-section">
       <div class="ring-wrap">
         <svg width="56" height="56" viewBox="0 0 56 56">
           <circle class="ring-bg" cx="28" cy="28" r="22"/>
           <circle class="ring-fill" cx="28" cy="28" r="22"/>
         </svg>
-        <div class="ring-label">35%</div>
+        <div class="ring-label">0%</div>
       </div>
       <div class="progress-info">
         <h4>黄达《金融学》</h4>
-        <p>已完成 5/14 章<br>本周新增 2 章</p>
+        <p>即将开始第8章</p>
       </div>
     </div>
 
-    <!-- chapters -->
     <div class="panel-section">
       <div class="section-title">章节进度</div>
-
-      <!-- 新增章节：方案B，放在列表顶部 -->
       <div class="add-chapter-wrap">
-        <button class="add-chapter-btn" onclick="toggleAddChapter()">
-          + 新增章节
-        </button>
+        <button class="add-chapter-btn" onclick="toggleAddChapter()">+ 新增章节</button>
         <div class="add-chapter-form" id="add-chapter-form">
           <input type="text" id="new-chapter-name" placeholder="输入章节名，如：第十一章 · 金融监管">
           <div class="add-chapter-actions">
@@ -900,84 +742,28 @@
           </div>
         </div>
       </div>
-
-      <div class="chapter-item active">
-        <div class="chapter-dot dot-weak"></div>
-        第八章 · 货币政策
-      </div>
-      <div class="chapter-item">
-        <div class="chapter-dot dot-done"></div>
-        第七章 · 中央银行
-      </div>
-      <div class="chapter-item">
-        <div class="chapter-dot dot-done"></div>
-        第六章 · 商业银行
-      </div>
-      <div class="chapter-item">
-        <div class="chapter-dot dot-done"></div>
-        第五章 · 利率
-      </div>
-      <div class="chapter-item">
-        <div class="chapter-dot dot-done"></div>
-        第四章 · 信用
-      </div>
-      <div class="chapter-item">
-        <div class="chapter-dot dot-todo"></div>
-        第九章 · 通货膨胀
-      </div>
-      <div class="chapter-item">
-        <div class="chapter-dot dot-todo"></div>
-        第十章 · 国际金融
-      </div>
+      <div class="chapter-item active"><div class="chapter-dot dot-weak"></div>第八章 · 货币政策</div>
+      <div class="chapter-item"><div class="chapter-dot dot-todo"></div>第九章 · 通货膨胀</div>
+      <div class="chapter-item"><div class="chapter-dot dot-todo"></div>第十章 · 国际金融</div>
     </div>
   </div>
 
-  <!-- CENTER -->
   <div class="center">
-
-    <!-- WELCOME VIEW -->
     <div id="welcome-view">
       <div class="welcome-card">
         <div class="welcome-date" id="today-date"></div>
-        <div class="welcome-title">
-          你来了，<em>慢慢来</em>。🌿
-        </div>
-        <div class="welcome-sub">
-          书很厚，时间很长，但你每天坐在这里的样子<br>
-          比任何"自律打卡"都更真实。<br>
-          今天也是你自己时区里的一天。
-        </div>
+        <div class="welcome-title">你来了，<em>慢慢来</em>。🌿</div>
+        <div class="welcome-sub">书很厚，时间很长，但你每天坐在这里的样子<br>比任何"自律打卡"都更真实。<br>今天也是你自己时区里的一天。</div>
         <div class="welcome-cards">
-          <div class="info-card">
-            <div class="info-card-icon">🔥</div>
-            <div class="info-card-label">连续学习</div>
-            <div class="info-card-value">7 天</div>
-            <div class="info-card-sub">上次跳过：5月11日</div>
-          </div>
-          <div class="info-card">
-            <div class="info-card-icon">⚠️</div>
-            <div class="info-card-label">今日待复习</div>
-            <div class="info-card-value">3 个</div>
-            <div class="info-card-sub">IS-LM · 货币层次 · 泰勒</div>
-          </div>
-          <div class="info-card">
-            <div class="info-card-icon">📖</div>
-            <div class="info-card-label">当前章节</div>
-            <div class="info-card-value" style="font-size:15px">货币政策</div>
-            <div class="info-card-sub">第八章 · 薄弱章节</div>
-          </div>
-          <div class="info-card">
-            <div class="info-card-icon">✍️</div>
-            <div class="info-card-label">今日热点</div>
-            <div class="info-card-value" style="font-size:15px">等你分析</div>
-            <div class="info-card-sub">央行降准 0.5 个百分点</div>
-          </div>
+          <div class="info-card"><div class="info-card-icon">🔥</div><div class="info-card-label">连续学习</div><div class="info-card-value">1 天</div><div class="info-card-sub">从今天开始</div></div>
+          <div class="info-card"><div class="info-card-icon">⚠️</div><div class="info-card-label">今日待复习</div><div class="info-card-value">—</div><div class="info-card-sub">学完一章后自动生成</div></div>
+          <div class="info-card"><div class="info-card-icon">📖</div><div class="info-card-label">当前章节</div><div class="info-card-value" style="font-size:15px">货币政策</div><div class="info-card-sub">第八章 · 从今天开始</div></div>
+          <div class="info-card"><div class="info-card-icon">✍️</div><div class="info-card-label">今日热点</div><div class="info-card-value" style="font-size:15px">等你分析</div><div class="info-card-sub">央行降准 0.5 个百分点</div></div>
         </div>
         <button class="start-btn" onclick="startStudy()">开始今天的学习 →</button>
       </div>
     </div>
 
-    <!-- STUDY VIEW -->
     <div id="study-view">
       <div class="study-header">
         <span class="study-title">第八章 · 货币政策</span>
@@ -985,122 +771,54 @@
         <div class="study-timer">⏱ <span id="study-timer">00:00</span></div>
       </div>
       <div class="chat-messages" id="chat-messages">
-        <!-- 自我问答区定位说明 -->
-        <div class="self-study-hint">
-          🌿 在这里整理你的思路，想清楚了再去 Gemini 验证
-        </div>
-        <!-- welcome msg -->
+        <div class="self-study-hint">🌿 在这里整理你的思路，想清楚了再去 Gemini 验证</div>
         <div class="msg" style="max-width:85%">
           <div class="msg-avatar">🌿</div>
-          <div class="msg-bubble">
-            今天继续货币政策这章。<br><br>
-            先复习一下昨天留下的问题：<strong>IS-LM模型中，财政政策和货币政策的效果为什么会不同？</strong><br><br>
-            用你自己的话说说，不用完整，说出你记得的部分就好。
-          </div>
-        </div>
-        <!-- hotspot card -->
-        <div class="msg" style="max-width:85%">
-          <div class="msg-avatar">📰</div>
-          <div class="msg-bubble" style="background: #fff8ee; border-color: #f5e0c0;">
-            <div style="font-size:11px;color:#b07830;letter-spacing:0.08em;margin-bottom:8px">今日热点分析题</div>
-            今天央行宣布降准 0.5 个百分点。<br><br>
-            <strong>请用IS-LM模型分析：这一政策将如何影响利率和产出？请描述传导路径。</strong><br><br>
-            <span style="font-size:12px;color:#b09080">不查书，先说你的理解。</span>
-          </div>
+          <div class="msg-bubble">今天开始货币政策这一章。<br><br>学完后记得让Gemini出题考你，然后把报告粘贴进来。<br>需要我帮你整理思路的话，在下面打字就好。</div>
         </div>
       </div>
       <div class="input-area">
         <div class="input-wrap">
-          <textarea id="input-box" rows="1" placeholder="说说你的想法……"
-            oninput="autoResize(this)" onkeydown="handleKey(event)"></textarea>
+          <textarea id="input-box" rows="1" placeholder="说说你的想法……" oninput="autoResize(this)" onkeydown="handleKey(event)"></textarea>
           <button class="send-btn" onclick="sendMsg()">➤</button>
         </div>
         <div class="input-hint">Enter 发送 · Shift+Enter 换行</div>
       </div>
     </div>
-
   </div>
 
-  <!-- RIGHT PANEL -->
   <div class="right-panel">
     <div class="right-section">
       <div class="right-title">行为标签追踪</div>
-      <div class="tag-item">
-        <span class="tag-name">概念混淆</span>
-        <div class="tag-bar-wrap"><div class="tag-bar warn" style="width:70%"></div></div>
-        <span class="tag-val">0.7</span>
-      </div>
-      <div class="tag-item">
-        <span class="tag-name">逻辑断层</span>
-        <div class="tag-bar-wrap"><div class="tag-bar warn" style="width:50%"></div></div>
-        <span class="tag-val">0.5</span>
-      </div>
-      <div class="tag-item">
-        <span class="tag-name">记忆不牢</span>
-        <div class="tag-bar-wrap"><div class="tag-bar" style="width:40%"></div></div>
-        <span class="tag-val">0.4</span>
-      </div>
-      <div class="tag-item">
-        <span class="tag-name">应用障碍</span>
-        <div class="tag-bar-wrap"><div class="tag-bar warn" style="width:60%"></div></div>
-        <span class="tag-val">0.6</span>
-      </div>
+      <div class="tag-item"><span class="tag-name">概念混淆</span><div class="tag-bar-wrap"><div class="tag-bar" style="width:0%"></div></div><span class="tag-val">0</span></div>
+      <div class="tag-item"><span class="tag-name">逻辑断层</span><div class="tag-bar-wrap"><div class="tag-bar" style="width:0%"></div></div><span class="tag-val">0</span></div>
+      <div class="tag-item"><span class="tag-name">记忆不牢</span><div class="tag-bar-wrap"><div class="tag-bar" style="width:0%"></div></div><span class="tag-val">0</span></div>
+      <div class="tag-item"><span class="tag-name">应用障碍</span><div class="tag-bar-wrap"><div class="tag-bar" style="width:0%"></div></div><span class="tag-val">0</span></div>
     </div>
-
     <div class="right-section">
       <div class="right-title">学习报告记录</div>
-      <div class="log-item">
-        <div class="log-date">2026.05.17</div>
-        <div class="log-title">第七章 · 中央银行职能与货币发行</div>
-        <span class="log-tag">已掌握 3 · 薄弱 1</span>
-      </div>
-      <div class="log-item">
-        <div class="log-date">2026.05.16</div>
-        <div class="log-title">第六章 · 商业银行资产负债管理</div>
-        <span class="log-tag">已掌握 4 · 薄弱 2</span>
-      </div>
-      <div class="log-item">
-        <div class="log-date">2026.05.15</div>
-        <div class="log-title">第五章 · 利率决定理论</div>
-        <span class="log-tag">已掌握 5 · 薄弱 0</span>
-      </div>
+      <div style="font-size:12px;color:var(--text-soft);text-align:center;padding:16px 0;">📋 写完第一份报告后<br>这里会出现记录</div>
     </div>
-
     <div class="right-section">
       <div class="right-title">今日学习目标</div>
       <div style="font-size:13px;color:var(--text-mid);line-height:2">
-        ☐ 复习 IS-LM 政策效果<br>
-        ☐ 完成货币政策传导机制<br>
-        ☐ 热点分析：央行降准<br>
+        ☐ 学习第八章·货币政策<br>
+        ☐ Gemini出题考核<br>
         ☐ 写入今日学习报告
       </div>
     </div>
   </div>
-
 </div>
 
-<!-- BREAK MODAL -->
 <div class="modal-overlay" id="break-modal">
-  <div class="modal">
-    <div class="modal-emoji">🌿</div>
-    <div class="modal-title">学了半小时了</div>
-    <div class="modal-body">
-      起来喝点水，转一圈，看看窗外。<br>
-      眼睛和脑子都需要休息一下。<br>
-      你已经很认真了。
-    </div>
-    <button class="modal-btn" onclick="closeBreak()">好，我去转一圈 🚶</button>
-  </div>
+  <div class="modal"><div class="modal-emoji">🌿</div><div class="modal-title">学了半小时了</div><div class="modal-body">起来喝点水，转一圈，看看窗外。<br>眼睛和脑子都需要休息一下。<br>你已经很认真了。</div><button class="modal-btn" onclick="closeBreak()">好，我去转一圈 🚶</button></div>
 </div>
 
-<!-- REPORT MODAL -->
 <div class="modal-overlay" id="report-modal">
   <div class="report-modal">
     <h3>写入今日学习报告</h3>
     <p>把今天在 Gemini 学完后生成的报告粘贴进来，井宿会帮你存入记忆桶。</p>
-    <div class="report-guide">
-      💡 建议先在 Gemini 完成学习和考核，再把生成的报告粘贴进来
-    </div>
+    <div class="report-guide">💡 建议先在 Gemini 完成学习和考核，再把生成的报告粘贴进来</div>
     <textarea placeholder="粘贴今日学习报告……&#10;&#10;例：&#10;章节：第八章 货币政策&#10;已掌握：货币政策三大工具、泰勒规则&#10;薄弱：IS-LM模型政策效果比较（概念混淆）&#10;错误次数：2次"></textarea>
     <div class="modal-btns">
       <button class="btn-ghost" onclick="closeReport()">取消</button>
@@ -1110,28 +828,17 @@
 </div>
 
 <script>
-  // ==================== 配置 ====================
   const API_BASE = 'https://jingxiu-memory-shenke-axkvforhtt.cn-hangzhou.fcapp.run';
 
-  // ==================== 日期 ====================
   const now = new Date();
-  const dateStr = now.toLocaleDateString('zh-CN', {year:'numeric',month:'long',day:'numeric',weekday:'long'});
-  document.getElementById('today-date').textContent = dateStr;
+  document.getElementById('today-date').textContent = now.toLocaleDateString('zh-CN', {year:'numeric',month:'long',day:'numeric',weekday:'long'});
 
-  // ==================== Tab 切换 ====================
   function switchTab(el, view) {
-    // 只处理非 disabled 的 tab
     if (el.classList.contains('disabled')) return;
-
     document.querySelectorAll('.nav-tab:not(.disabled)').forEach(t => t.classList.remove('active'));
     el.classList.add('active');
-    if (view === 'study') {
-      document.getElementById('welcome-view').style.display = 'none';
-      document.getElementById('study-view').style.display = 'flex';
-    } else {
-      document.getElementById('study-view').style.display = 'none';
-      document.getElementById('welcome-view').style.display = 'flex';
-    }
+    document.getElementById('welcome-view').style.display = view === 'study' ? 'none' : 'flex';
+    document.getElementById('study-view').style.display = view === 'study' ? 'flex' : 'none';
   }
 
   function startStudy() {
@@ -1140,17 +847,12 @@
     startTimer();
   }
 
-  // ==================== 专注计时器 ====================
-  let seconds = 0;
-  let timerInterval = null;
-  let breakShown = false;
-
+  let seconds = 0, timerInterval = null, breakShown = false;
   function startTimer() {
     if (timerInterval) return;
     timerInterval = setInterval(() => {
       seconds++;
-      const m = String(Math.floor(seconds/60)).padStart(2,'0');
-      const s = String(seconds%60).padStart(2,'0');
+      const m = String(Math.floor(seconds/60)).padStart(2,'0'), s = String(seconds%60).padStart(2,'0');
       document.getElementById('timer-display').textContent = `专注中 ${m}:${s}`;
       document.getElementById('study-timer').textContent = `${m}:${s}`;
       if (seconds === 1800 && !breakShown) { showBreakNow(); breakShown = true; }
@@ -1158,147 +860,74 @@
   }
 
   function showBreakNow() { document.getElementById('break-modal').classList.add('show'); }
-  function closeBreak() {
-    document.getElementById('break-modal').classList.remove('show');
-    seconds = 0;
-    breakShown = false;
-  }
+  function closeBreak() { document.getElementById('break-modal').classList.remove('show'); seconds = 0; breakShown = false; }
 
-  // ==================== 学习报告弹窗 ====================
   function openReport() { document.getElementById('report-modal').classList.add('show'); }
   function closeReport() { document.getElementById('report-modal').classList.remove('show'); }
 
   function saveReport() {
     const val = document.querySelector('#report-modal textarea').value.trim();
     if (!val) return;
-
-    // 调用后端 API 写入记忆桶
-    const reportData = {
-      date: new Date().toISOString().slice(0, 10),
-      chapter: '第八章 · 货币政策',
-      mastered: [],
-      weak_points: [],
-      summary: val
-    };
-
-    // 尝试解析用户粘贴的内容
+    const reportData = { date: new Date().toISOString().slice(0, 10), chapter: '第八章 · 货币政策', mastered: [], weak_points: [], summary: val };
     const chapterMatch = val.match(/章节[：:]\s*(.+)/);
     if (chapterMatch) reportData.chapter = chapterMatch[1].trim();
-
     const masteredMatch = val.match(/已掌握[：:]\s*(.+)/);
-    if (masteredMatch) {
-      reportData.mastered = masteredMatch[1].split(/[,，、]/).map(s => s.trim()).filter(Boolean);
-    }
-
+    if (masteredMatch) reportData.mastered = masteredMatch[1].split(/[,，、]/).map(s => s.trim()).filter(Boolean);
     const weakMatch = val.match(/薄弱[：:]\s*(.+)/);
     if (weakMatch) {
-      const weakItems = weakMatch[1].split(/[,，、]/).map(s => s.trim()).filter(Boolean);
-      reportData.weak_points = weakItems.map(item => {
+      reportData.weak_points = weakMatch[1].split(/[,，、]/).map(s => s.trim()).filter(Boolean).map(item => {
         const typeMatch = item.match(/[（(](.+)[）)]/);
-        const pointName = typeMatch ? item.replace(/[（(].+[）)]/, '').trim() : item;
-        const errorType = typeMatch ? typeMatch[1].trim() : '概念混淆';
-        return { point: pointName, error_type: errorType, error_count: 1 };
+        return { point: typeMatch ? item.replace(/[（(].+[）)]/, '').trim() : item, error_type: typeMatch ? typeMatch[1].trim() : '概念混淆', error_count: 1 };
       });
     }
-
-    fetch(API_BASE + '/report', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(reportData)
-    })
-    .then(r => r.json())
-    .then(data => {
-      if (data.success) {
-        alert('✓ 学习报告已存入记忆桶');
-      } else {
-        alert('⚠️ 存入失败：' + (data.message || '未知错误'));
-      }
-    })
-    .catch(err => {
-      alert('⚠️ 网络错误，请检查 API 地址配置\n' + err.message);
-    });
-
+    fetch(API_BASE + '/report', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(reportData) })
+      .then(r => r.json())
+      .then(data => { alert(data.success ? '✓ 学习报告已存入记忆桶' : '⚠️ 存入失败：' + (data.message || '未知错误')); })
+      .catch(err => { alert('⚠️ 网络错误，请检查 API 地址配置\n' + err.message); });
     closeReport();
     document.querySelector('#report-modal textarea').value = '';
   }
 
-  // ==================== 新增章节 ====================
   function toggleAddChapter() {
     const form = document.getElementById('add-chapter-form');
     form.classList.toggle('show');
-    if (form.classList.contains('show')) {
-      document.getElementById('new-chapter-name').focus();
-    }
+    if (form.classList.contains('show')) document.getElementById('new-chapter-name').focus();
   }
 
   function addChapter() {
-    const input = document.getElementById('new-chapter-name');
-    const name = input.value.trim();
+    const input = document.getElementById('new-chapter-name'), name = input.value.trim();
     if (!name) return;
-
-    // 调用后端 API
-    fetch(API_BASE + '/chapter', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chapter: name })
-    })
-    .then(r => r.json())
-    .then(data => {
-      if (data.success) {
-        // 添加到列表中
-        const chapterList = document.querySelector('.panel-section .add-chapter-wrap').parentNode;
-        const newItem = document.createElement('div');
-        newItem.className = 'chapter-item';
-        newItem.innerHTML = `<div class="chapter-dot dot-todo"></div>${name}`;
-        // 插入到新增按钮下方第一个
-        const addWrap = document.querySelector('.add-chapter-wrap');
-        addWrap.parentNode.insertBefore(newItem, addWrap.nextSibling);
-
-        input.value = '';
-        toggleAddChapter();
-      } else {
-        alert('⚠️ ' + (data.message || '添加失败'));
-      }
-    })
-    .catch(err => {
-      alert('⚠️ 网络错误，请检查 API 地址配置\n' + err.message);
-    });
+    fetch(API_BASE + '/chapter', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chapter: name }) })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) {
+          const addWrap = document.querySelector('.add-chapter-wrap');
+          const newItem = document.createElement('div');
+          newItem.className = 'chapter-item';
+          newItem.innerHTML = `<div class="chapter-dot dot-todo"></div>${name}`;
+          addWrap.parentNode.insertBefore(newItem, addWrap.nextSibling);
+          input.value = ''; toggleAddChapter();
+        } else { alert('⚠️ ' + (data.message || '添加失败')); }
+      })
+      .catch(err => { alert('⚠️ 网络错误，请检查 API 地址配置\n' + err.message); });
   }
 
-  // ==================== 自我问答区 ====================
   function sendMsg() {
-    const box = document.getElementById('input-box');
-    const text = box.value.trim();
+    const box = document.getElementById('input-box'), text = box.value.trim();
     if (!text) return;
-
     const msgs = document.getElementById('chat-messages');
-
-    // 仅本地渲染用户消息，不调 API
     const userMsg = document.createElement('div');
     userMsg.className = 'msg user';
     userMsg.innerHTML = `<div class="msg-avatar">你</div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`;
     msgs.appendChild(userMsg);
-
-    box.value = '';
-    box.style.height = 'auto';
+    box.value = ''; box.style.height = 'auto';
     msgs.scrollTop = msgs.scrollHeight;
-
-    // 不显示"正在思考"，纯本地——这就是自我问答区的含义
   }
 
-  function handleKey(e) {
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
-  }
+  function handleKey(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); } }
+  function autoResize(el) { el.style.height = 'auto'; el.style.height = Math.min(el.scrollHeight, 120) + 'px'; }
 
-  function autoResize(el) {
-    el.style.height = 'auto';
-    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
-  }
-
-  // ==================== 关闭弹窗 ====================
-  document.querySelectorAll('.modal-overlay').forEach(el => {
-    el.addEventListener('click', e => { if(e.target === el) el.classList.remove('show'); });
-  });
+  document.querySelectorAll('.modal-overlay').forEach(el => { el.addEventListener('click', e => { if(e.target === el) el.classList.remove('show'); }); });
 </script>
 </body>
 </html>
