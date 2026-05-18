@@ -664,6 +664,29 @@
     const todayCards = getTodayReviewCards();
     document.getElementById('review-count').textContent = todayCards.length > 0 ? todayCards.length + ' 张' : '—';
     document.getElementById('review-sub').textContent = todayCards.length > 0 ? todayCards.map(c => c.title).slice(0,2).join(' · ') + (todayCards.length > 2 ? '…' : '') : '学完一章后自动生成';
+     // 拉取今日热点
+    fetch(API_BASE + '/hotspot')
+      .then(r => r.json())
+      .then(data => {
+        if (data.success && data.hotspot) {
+          const hotspotTitle = document.getElementById('hotspot-title');
+          const hotspotSub = document.getElementById('hotspot-sub');
+          if (hotspotTitle) {
+            hotspotTitle.textContent = data.hotspot.title.length > 20 
+              ? data.hotspot.title.substring(0, 20) + '…' 
+              : data.hotspot.title;
+            hotspotTitle.title = data.hotspot.title;
+            hotspotTitle.style.cursor = data.hotspot.url ? 'pointer' : 'default';
+            hotspotTitle.onclick = data.hotspot.url 
+              ? () => window.open(data.hotspot.url, '_blank') 
+              : null;
+          }
+          if (hotspotSub) {
+            hotspotSub.textContent = data.hotspot.source + (data.hotspot.time ? ' · ' + data.hotspot.time : '');
+          }
+        }
+      })
+      .catch(() => {});
   }
 
   // ── NOTES AUTO SAVE ──
