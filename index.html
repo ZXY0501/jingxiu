@@ -503,6 +503,40 @@
     try { localStorage.setItem('jingshu_' + key, JSON.stringify(val)); } catch {}
   }
 
+  // ── 通知权限 ──
+  function requestNotificationPermission() {
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+  }
+
+  function sendNotification(title, body) {
+    if ('Notification' in window && Notification.permission === 'granted') {
+      new Notification(title, { body, icon: '🌿', tag: 'jingxiu-reminder' });
+    }
+  }
+
+  // ── 音效播放器（使用Web Audio API，无需额外音频文件） ──
+  function playChime() {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const notes = [784, 988, 1175]; // G5, B5, D6 — 柔和风铃音
+      const duration = 0.4;
+      notes.forEach((freq, i) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.frequency.value = freq;
+        osc.type = 'sine';
+        gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15);
+        osc.stop(ctx.currentTime + i * 0.15 + duration);
+      });
+    } catch(e) {}
+  }
+
   let chapters = load('chapters', [
     { name: '第八章 · 货币政策', status: 'weak' },
     { name: '第九章 · 通货膨胀', status: 'todo' },
@@ -529,6 +563,9 @@
     updateWelcomeCard();
     renderGoals();
     updateStreak();
+
+    // 请求通知权限（首次打开井宿时）
+    requestNotificationPermission();
 
     const savedStart = localStorage.getItem('jingshu_timer_start');
     if (savedStart) {
@@ -941,7 +978,6 @@
         showBreakNow();
         breakShown = true;
       }
-      // 22:30 收摊提醒
       const now = new Date();
       if (now.getHours() === 22 && now.getMinutes() >= 30 && !windDownShown) {
         showWindDown();
@@ -950,7 +986,12 @@
     }, 1000);
   }
 
-  function showBreakNow() { document.getElementById('break-modal').classList.add('show'); }
+  function showBreakNow() {
+    playChime();
+    sendNotification('🌿 该休息一下了', '起来喝点水，转一圈，转头+耸肩+放松。坐直，抬头。');
+    document.getElementById('break-modal').classList.add('show');
+  }
+
   function closeBreak() {
     document.getElementById('break-modal').classList.remove('show');
     seconds = 0;
@@ -961,8 +1002,15 @@
     startTimer();
   }
 
-  function showWindDown() { document.getElementById('wind-down-modal').classList.add('show'); }
-  function closeWindDown() { document.getElementById('wind-down-modal').classList.remove('show'); }
+  function showWindDown() {
+    playChime();
+    sendNotification('🌙 该收摊了', '十点半了，关掉工作标签页。把手机放到桌子对面。');
+    document.getElementById('wind-down-modal').classList.add('show');
+  }
+
+  function closeWindDown() {
+    document.getElementById('wind-down-modal').classList.remove('show');
+  }
 
   // ── VIEWS ──
   function switchTab(el, view) {
