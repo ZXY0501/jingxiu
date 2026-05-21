@@ -573,26 +573,47 @@
     }
   }
 
-  // ── STREAK ──
+    // ── STREAK ──
   function updateStreak() {
     const today = now.toISOString().slice(0, 10);
     const lastDate = localStorage.getItem('jingshu_last_active');
     let streak = parseInt(localStorage.getItem('jingshu_streak') || '0');
-    if (lastDate !== today) {
+
+    if (lastDate === today) {
+      // 今天已经记录过了，直接显示当前streak
+      // streak 不变
+    } else if (lastDate === null || lastDate === '') {
+      // 第一次打开井宿
+      streak = 1;
+      localStorage.setItem('jingshu_last_active', today);
+      localStorage.setItem('jingshu_streak', String(streak));
+    } else {
       const yesterday = new Date(now);
       yesterday.setDate(yesterday.getDate() - 1);
       const yesterdayStr = yesterday.toISOString().slice(0, 10);
+
       if (lastDate === yesterdayStr) {
+        // 昨天来过，连续学习+1
         streak += 1;
       } else {
+        // 中断了，重新从1开始
         streak = 1;
       }
       localStorage.setItem('jingshu_last_active', today);
       localStorage.setItem('jingshu_streak', String(streak));
     }
+
     document.getElementById('streak-val').textContent = streak + ' 天';
-    document.getElementById('streak-val').parentElement.querySelector('.info-card-sub').textContent =
-      streak === 1 ? '从今天开始' : '上次跳过：' + (lastDate || '—');
+    const subEl = document.getElementById('streak-val').parentElement.querySelector('.info-card-sub');
+    if (subEl) {
+      if (streak === 1 && lastDate !== today) {
+        subEl.textContent = '从今天开始';
+      } else if (lastDate && lastDate !== today && lastDate !== yesterdayStr) {
+        subEl.textContent = '上次打开：' + lastDate;
+      } else {
+        subEl.textContent = streak > 1 ? '保持下去！' : '从今天开始';
+      }
+    }
   }
 
   // ── GOALS ──
