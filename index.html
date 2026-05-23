@@ -76,7 +76,6 @@
 
   .main { flex: 1; display: flex; overflow: hidden; }
 
-  /* LEFT PANEL */
   .left-panel { width: 300px; min-width: 300px; border-right: 1px solid var(--border-light); display: flex; flex-direction: column; background: var(--cream); overflow-y: auto; }
   .left-panel::-webkit-scrollbar { width: 4px; }
   .left-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
@@ -132,7 +131,6 @@
   .btn-mini-green { background: var(--green-soft); border: 1px solid var(--green-soft); color: white; }
   .btn-mini-green:hover { background: #7a9b6e; }
 
-  /* CENTER */
   .center { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
   #welcome-view { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px; overflow-y: auto; }
@@ -152,7 +150,6 @@
   .start-btn { width: 100%; padding: 16px; background: var(--green-soft); border: none; border-radius: 12px; color: white; font-family: 'Noto Serif SC', serif; font-size: 15px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em; box-shadow: 0 4px 16px rgba(138,171,126,0.3); }
   .start-btn:hover { background: #7a9b6e; transform: translateY(-1px); }
 
-  /* NOTES VIEW */
   #notes-view { flex: 1; display: none; flex-direction: column; overflow: hidden; position: relative; }
   .notes-header { padding: 16px 32px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
   .notes-title { font-size: 16px; font-weight: 500; color: var(--text-dark); }
@@ -164,7 +161,6 @@
   .notes-textarea { width: 100%; min-height: 100%; background: transparent; border: none; outline: none; font-family: 'Noto Serif SC', serif; font-size: 15px; line-height: 2; color: var(--text-dark); resize: none; }
   .notes-textarea::placeholder { color: var(--text-muted); font-weight: 300; }
 
-  /* 评估按钮 */
   .evaluate-area { padding: 16px 40px 20px; border-top: 1px solid var(--border-light); flex-shrink: 0; display: flex; gap: 12px; align-items: center; }
   .evaluate-btn, .save-note-btn {
     display: flex; align-items: center; gap: 8px;
@@ -198,9 +194,7 @@
     transform: translateX(100%);
     transition: transform 0.3s ease;
   }
-  .eval-slide-panel.show {
-    transform: translateX(0);
-  }
+  .eval-slide-panel.show { transform: translateX(0); }
 
   .eval-slide-header {
     padding: 20px 24px 16px;
@@ -232,13 +226,35 @@
     flex: 1;
     overflow-y: auto;
     padding: 20px 24px;
+  }
+  .eval-slide-body::-webkit-scrollbar { width: 4px; }
+  .eval-slide-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .eval-history-item {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .eval-history-item:last-child { border-bottom: none; margin-bottom: 0; }
+  .eval-history-time {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .eval-history-content {
     font-size: 13px;
     color: var(--text-mid);
     line-height: 1.9;
     white-space: pre-wrap;
   }
-  .eval-slide-body::-webkit-scrollbar { width: 4px; }
-  .eval-slide-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .eval-empty {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 40px 0;
+    font-size: 13px;
+    line-height: 2;
+  }
 
   .eval-slide-footer {
     padding: 14px 24px;
@@ -247,20 +263,20 @@
     display: flex;
     gap: 10px;
   }
-  .eval-slide-copy-btn {
+  .eval-slide-copy-btn, .eval-slide-clear-btn {
     padding: 8px 18px;
     background: white;
     border: 1px solid var(--border-light);
     border-radius: 8px;
     font-family: 'Noto Serif SC', serif;
     font-size: 12px;
-    color: var(--text-soft);
     cursor: pointer;
     transition: all 0.2s;
+    color: var(--text-soft);
   }
   .eval-slide-copy-btn:hover { border-color: var(--green-light); color: var(--green-soft); background: var(--green-mist); }
+  .eval-slide-clear-btn:hover { border-color: #e8a87c; color: #c04040; background: #fef5f0; }
 
-  /* 遮罩 */
   .eval-mask {
     position: fixed;
     inset: 0;
@@ -270,7 +286,6 @@
   }
   .eval-mask.show { display: block; }
 
-  /* STUDY VIEW */
   #study-view { flex: 1; display: none; flex-direction: column; overflow: hidden; }
   .study-header { padding: 20px 32px 16px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
   .study-title { font-size: 16px; font-weight: 500; color: var(--text-dark); }
@@ -295,7 +310,6 @@
   .send-btn:hover { background: #7a9b6e; transform: scale(1.05); }
   .input-hint { font-size: 11px; color: var(--text-muted); margin-top: 8px; padding: 0 4px; }
 
-  /* RIGHT PANEL */
   .right-panel { width: 260px; min-width: 260px; border-left: 1px solid var(--border-light); background: var(--cream); overflow-y: auto; display: flex; flex-direction: column; }
   .right-panel::-webkit-scrollbar { width: 4px; }
   .right-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
@@ -314,7 +328,6 @@
   .log-tag { display: inline-block; font-size: 10px; padding: 1px 6px; background: var(--green-pale); color: var(--green-soft); border-radius: 6px; margin-top: 4px; }
   .log-empty { font-size: 12px; color: var(--text-soft); text-align: center; padding: 16px 0; }
 
-  /* MODALS */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(61,53,48,0.35); backdrop-filter: blur(6px); z-index: 100; align-items: center; justify-content: center; }
   .modal-overlay.show { display: flex; }
   .modal { background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 40px 44px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(100,80,60,0.2); animation: fadeUp 0.4s ease; }
@@ -336,7 +349,6 @@
   .btn-green { padding: 10px 20px; background: var(--green-soft); border: none; border-radius: 8px; color: white; font-family: 'Noto Serif SC', serif; font-size: 13px; cursor: pointer; transition: all 0.2s; }
   .btn-green:hover { background: #7a9b6e; }
 
-  /* FLASHCARD MODAL */
   .flashcard-modal { background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 32px 36px; max-width: 560px; width: 90%; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(100,80,60,0.2); animation: fadeUp 0.4s ease; }
   .flashcard-modal h3 { font-family: 'Lora', serif; font-size: 20px; color: var(--text-dark); margin-bottom: 6px; }
   .flashcard-modal .sub { font-size: 13px; color: var(--text-soft); margin-bottom: 20px; line-height: 1.6; }
@@ -351,7 +363,6 @@
   .add-card-btn { display: flex; align-items: center; gap: 6px; padding: 10px 16px; border: 1px dashed var(--border); border-radius: 10px; background: transparent; font-family: 'Noto Serif SC', serif; font-size: 12px; color: var(--text-muted); cursor: pointer; width: 100%; transition: all 0.2s; margin-bottom: 16px; }
   .add-card-btn:hover { border-color: var(--green-light); color: var(--green-soft); background: var(--green-mist); }
 
-  /* REVIEW MODAL (card list view) */
   .review-modal { background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 32px 36px; max-width: 520px; width: 90%; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(100,80,60,0.2); animation: fadeUp 0.4s ease; }
   .review-modal h3 { font-family: 'Lora', serif; font-size: 20px; color: var(--text-dark); margin-bottom: 6px; }
   .review-modal .sub { font-size: 13px; color: var(--text-soft); margin-bottom: 20px; }
@@ -362,7 +373,6 @@
   .review-card-title { flex: 1; font-size: 13px; color: var(--text-dark); }
   .review-card-arrow { font-size: 12px; color: var(--text-muted); }
 
-  /* SINGLE CARD VIEW */
   .single-card { background: var(--cream); border: 1px solid var(--border); border-radius: 20px; padding: 40px 44px; max-width: 480px; width: 90%; text-align: center; box-shadow: 0 20px 60px rgba(100,80,60,0.2); animation: fadeUp 0.4s ease; }
   .single-card .card-back-label { font-size: 10px; letter-spacing: 0.14em; color: var(--text-muted); margin-bottom: 20px; }
   .single-card .card-front-title { font-family: 'Lora', serif; font-size: 22px; color: var(--text-dark); margin-bottom: 24px; line-height: 1.5; }
@@ -373,7 +383,6 @@
   .card-back-btn { padding: 10px 20px; background: transparent; border: 1px solid var(--border); border-radius: 10px; color: var(--text-soft); font-family: 'Noto Serif SC', serif; font-size: 13px; cursor: pointer; transition: all 0.2s; }
   .card-back-btn:hover { border-color: var(--text-muted); }
 
-  /* GOAL ITEMS */
   .goal-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 13px; color: var(--text-mid); transition: color 0.2s; }
   .goal-item:hover .goal-delete { opacity: 1; }
   .goal-checkbox { width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid var(--border); cursor: pointer; flex-shrink: 0; appearance: none; -webkit-appearance: none; position: relative; transition: all 0.2s; }
@@ -407,7 +416,6 @@
 </nav>
 
 <div class="main">
-  <!-- LEFT -->
   <div class="left-panel">
     <div class="panel-section">
       <div class="section-title">今日复习推送</div>
@@ -447,7 +455,6 @@
     </div>
   </div>
 
-  <!-- CENTER -->
   <div class="center">
     <div id="welcome-view">
       <div class="welcome-card">
@@ -474,12 +481,8 @@
         <textarea class="notes-textarea" id="notes-textarea" placeholder="在这里写你的学习笔记……&#10;&#10;可以记录核心概念、自己的理解、容易混淆的地方。&#10;笔记会自动保存到当前章节。"></textarea>
       </div>
       <div class="evaluate-area">
-        <button class="evaluate-btn" id="evaluate-btn" onclick="evaluateNote()">
-          📋 提交DS评估
-        </button>
-        <button class="save-note-btn" id="save-note-btn" onclick="saveNoteToCloud()">
-          💾 保存到云端
-        </button>
+        <button class="evaluate-btn" id="evaluate-btn" onclick="evaluateNote()">📋 提交DS评估</button>
+        <button class="save-note-btn" id="save-note-btn" onclick="saveNoteToCloud()">💾 保存到云端</button>
       </div>
     </div>
 
@@ -506,7 +509,6 @@
     </div>
   </div>
 
-  <!-- RIGHT -->
   <div class="right-panel">
     <div class="right-section">
       <div class="right-title">错误类型追踪</div>
@@ -531,12 +533,15 @@
 <div class="eval-mask" id="eval-mask" onclick="closeEvalPanel()"></div>
 <div class="eval-slide-panel" id="eval-slide-panel">
   <div class="eval-slide-header">
-    <span class="eval-slide-title">📋 DS评估结果</span>
+    <span class="eval-slide-title">📋 评估历史记录</span>
     <button class="eval-slide-close" onclick="closeEvalPanel()">✕</button>
   </div>
-  <div class="eval-slide-body" id="eval-slide-body"></div>
+  <div class="eval-slide-body" id="eval-slide-body">
+    <div class="eval-empty">暂无评估记录<br><br>提交DS评估后，结果会出现在这里</div>
+  </div>
   <div class="eval-slide-footer">
-    <button class="eval-slide-copy-btn" onclick="copyEvalSlideResult()">复制评估结果</button>
+    <button class="eval-slide-copy-btn" onclick="copyLatestEval()">复制最新结果</button>
+    <button class="eval-slide-clear-btn" onclick="clearEvalHistory()">清空历史</button>
   </div>
 </div>
 
@@ -545,12 +550,7 @@
   <div class="modal">
     <div class="modal-emoji">🌿</div>
     <div class="modal-title">学了半小时了</div>
-    <div class="modal-body">
-      起来喝点水，转一圈，看看窗外。<br>
-      转头 + 耸肩 + 放松，5秒钟。<br>
-      坐直，抬头，耳朵后面应该立刻通了一下。<br>
-      你已经很认真了。
-    </div>
+    <div class="modal-body">起来喝点水，转一圈，看看窗外。<br>转头 + 耸肩 + 放松，5秒钟。<br>坐直，抬头，耳朵后面应该立刻通了一下。<br>你已经很认真了。</div>
     <button class="modal-btn" onclick="closeBreak()">好，我转一圈 🚶</button>
   </div>
 </div>
@@ -560,11 +560,7 @@
   <div class="modal">
     <div class="modal-emoji">🌙</div>
     <div class="modal-title">该收摊了</div>
-    <div class="modal-body">
-      十点半了，关掉工作标签页。<br>
-      让大脑知道今天结束了。<br>
-      把手机放到桌子对面，不要放床头。
-    </div>
+    <div class="modal-body">十点半了，关掉工作标签页。<br>让大脑知道今天结束了。<br>把手机放到桌子对面，不要放床头。</div>
     <button class="modal-btn" onclick="closeWindDown()">好，收摊了 🌿</button>
   </div>
 </div>
@@ -631,33 +627,23 @@
   }
 
   function requestNotificationPermission() {
-    if ('Notification' in window && Notification.permission === 'default') {
-      Notification.requestPermission();
-    }
+    if ('Notification' in window && Notification.permission === 'default') { Notification.requestPermission(); }
   }
-
   function sendNotification(title, body) {
     if ('Notification' in window && Notification.permission === 'granted') {
       new Notification(title, { body, icon: '🌿', tag: 'jingxiu-reminder' });
     }
   }
-
   function playChime() {
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const notes = [784, 988, 1175];
-      const duration = 0.4;
-      notes.forEach((freq, i) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.frequency.value = freq;
-        osc.type = 'sine';
+      [784, 988, 1175].forEach((freq, i) => {
+        const osc = ctx.createOscillator(), gain = ctx.createGain();
+        osc.frequency.value = freq; osc.type = 'sine';
         gain.gain.setValueAtTime(0.15, ctx.currentTime + i * 0.15);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + duration);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start(ctx.currentTime + i * 0.15);
-        osc.stop(ctx.currentTime + i * 0.15 + duration);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 0.4);
+        osc.connect(gain); gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + i * 0.15); osc.stop(ctx.currentTime + i * 0.15 + 0.4);
       });
     } catch(e) {}
   }
@@ -676,136 +662,75 @@
     { text: '选择今日学习章节', done: false },
     { text: '在Gemini完成学习', done: false }
   ]);
+  let evalHistory = [];
 
   const now = new Date();
   document.getElementById('today-date').textContent = now.toLocaleDateString('zh-CN', {year:'numeric',month:'long',day:'numeric',weekday:'long'});
 
   function init() {
-    renderChapters();
-    renderReports();
-    renderErrorTags();
-    renderReviewPush();
-    updateWelcomeCard();
-    renderGoals();
-    updateStreak();
-    requestNotificationPermission();
-
+    renderChapters(); renderReports(); renderErrorTags(); renderReviewPush();
+    updateWelcomeCard(); renderGoals(); updateStreak(); requestNotificationPermission();
     const savedStart = localStorage.getItem('jingshu_timer_start');
-    if (savedStart) {
-      startTimer(parseInt(savedStart));
-    }
+    if (savedStart) startTimer(parseInt(savedStart));
   }
 
   function updateStreak() {
     const today = now.toISOString().slice(0, 10);
     const lastDate = localStorage.getItem('jingshu_last_active');
     let streak = parseInt(localStorage.getItem('jingshu_streak') || '0');
-
-    if (lastDate === today) {
-    } else if (lastDate === null || lastDate === '') {
-      streak = 1;
-      localStorage.setItem('jingshu_last_active', today);
-      localStorage.setItem('jingshu_streak', String(streak));
-    } else {
-      const yesterday = new Date(now);
-      yesterday.setDate(yesterday.getDate() - 1);
-      const yesterdayStr = yesterday.toISOString().slice(0, 10);
-
-      if (lastDate === yesterdayStr) {
-        streak += 1;
-      } else {
-        streak = 1;
-      }
-      localStorage.setItem('jingshu_last_active', today);
-      localStorage.setItem('jingshu_streak', String(streak));
+    if (lastDate === today) { /* already logged */ }
+    else if (lastDate === null || lastDate === '') { streak = 1; localStorage.setItem('jingshu_last_active', today); localStorage.setItem('jingshu_streak', String(streak)); }
+    else {
+      const yesterday = new Date(now); yesterday.setDate(yesterday.getDate() - 1);
+      if (lastDate === yesterday.toISOString().slice(0, 10)) { streak += 1; } else { streak = 1; }
+      localStorage.setItem('jingshu_last_active', today); localStorage.setItem('jingshu_streak', String(streak));
     }
-
     document.getElementById('streak-val').textContent = streak + ' 天';
-    const subEl = document.getElementById('streak-val').parentElement.querySelector('.info-card-sub');
-    if (subEl) {
-      if (streak === 1 && lastDate !== today) {
-        subEl.textContent = '从今天开始';
-      } else if (lastDate && lastDate !== today && lastDate !== yesterdayStr) {
-        subEl.textContent = '上次打开：' + lastDate;
-      } else {
-        subEl.textContent = streak > 1 ? '保持下去！' : '从今天开始';
-      }
-    }
   }
 
   function renderGoals() {
-    const container = document.getElementById('today-goals');
-    container.innerHTML = goals.map((g, i) => `
+    document.getElementById('today-goals').innerHTML = goals.map((g, i) => `
       <div class="goal-item">
         <input type="checkbox" class="goal-checkbox" ${g.done ? 'checked' : ''} onchange="toggleGoal(${i})">
         <span class="goal-text${g.done ? ' done' : ''}" onclick="toggleGoal(${i})">${g.text}</span>
         <button class="goal-delete" onclick="deleteGoal(${i})">✕</button>
-      </div>
-    `).join('');
+      </div>`).join('');
   }
-
   function toggleGoal(i) { goals[i].done = !goals[i].done; save('goals', goals); renderGoals(); }
   function deleteGoal(i) { goals.splice(i, 1); save('goals', goals); renderGoals(); }
   function addGoal() {
-    const text = prompt('新增学习目标：');
-    if (!text || !text.trim()) return;
-    goals.push({ text: text.trim(), done: false });
-    save('goals', goals);
-    renderGoals();
+    const text = prompt('新增学习目标：'); if (!text || !text.trim()) return;
+    goals.push({ text: text.trim(), done: false }); save('goals', goals); renderGoals();
   }
 
   const STATUS_CYCLE = ['todo', 'done', 'weak'];
   const STATUS_DOT = { done: 'dot-done', weak: 'dot-weak', todo: 'dot-todo' };
-
   function renderChapters() {
-    const list = document.getElementById('chapter-list');
-    list.innerHTML = '';
+    const list = document.getElementById('chapter-list'); list.innerHTML = '';
     chapters.forEach((ch, i) => {
-      const item = document.createElement('div');
-      item.className = 'chapter-item' + (i === activeChapterIndex ? ' active' : '');
-      item.innerHTML = `
-        <div class="chapter-dot ${STATUS_DOT[ch.status]}" title="点击切换状态" onclick="cycleStatus(event,${i})"></div>
-        <span class="chapter-name">${ch.name}</span>
-        <div class="chapter-actions">
-          <button class="chapter-action-btn" onclick="renameChapter(event,${i})">改名</button>
-          <button class="chapter-action-btn del" onclick="deleteChapter(event,${i})">删</button>
-        </div>`;
-      item.addEventListener('click', (e) => {
-        if (e.target.classList.contains('chapter-dot') || e.target.classList.contains('chapter-action-btn')) return;
-        selectChapter(i);
-      });
+      const item = document.createElement('div'); item.className = 'chapter-item' + (i === activeChapterIndex ? ' active' : '');
+      item.innerHTML = `<div class="chapter-dot ${STATUS_DOT[ch.status]}" onclick="cycleStatus(event,${i})"></div><span class="chapter-name">${ch.name}</span><div class="chapter-actions"><button class="chapter-action-btn" onclick="renameChapter(event,${i})">改名</button><button class="chapter-action-btn del" onclick="deleteChapter(event,${i})">删</button></div>`;
+      item.addEventListener('click', (e) => { if (!e.target.classList.contains('chapter-dot') && !e.target.classList.contains('chapter-action-btn')) selectChapter(i); });
       list.appendChild(item);
-    });
-    updateProgress();
+    }); updateProgress();
   }
 
   async function selectChapter(i) {
-    activeChapterIndex = i;
-    save('activeChapter', i);
-    renderChapters();
-    updateWelcomeCard();
+    activeChapterIndex = i; save('activeChapter', i); renderChapters(); updateWelcomeCard();
+    evalHistory = []; renderEvalHistory();
     openNotesView(i);
-
-    const ch = chapters[i];
-    if (!ch) return;
+    const ch = chapters[i]; if (!ch) return;
     try {
-      const response = await fetch(API_BASE + '/load-note', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chapter: ch.name })
-      });
+      const response = await fetch(API_BASE + '/load-note', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chapter: ch.name }) });
       const data = await response.json();
       if (data.success && data.note) {
         document.getElementById('notes-textarea').value = data.note.content || '';
         if (data.note.evaluation) {
-          document.getElementById('eval-slide-body').textContent = data.note.evaluation;
+          evalHistory.push({ content: data.note.evaluation, time: data.note.updated_at || '' });
+          renderEvalHistory();
         }
-      } else {
-        document.getElementById('notes-textarea').value = notes[ch.name] || '';
-      }
-    } catch (e) {
-      document.getElementById('notes-textarea').value = notes[ch.name] || '';
-    }
+      } else { document.getElementById('notes-textarea').value = notes[ch.name] || ''; }
+    } catch (e) { document.getElementById('notes-textarea').value = notes[ch.name] || ''; }
   }
 
   function openNotesView(i) {
@@ -816,479 +741,173 @@
     document.getElementById('notes-title').textContent = ch.name;
     document.getElementById('study-chapter-title').textContent = ch.name;
     document.getElementById('notes-textarea').value = notes[ch.name] || '';
-    closeEvalPanel();
     document.querySelectorAll('.nav-tab:not(.disabled)').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-tab:not(.disabled)')[1].classList.add('active');
   }
 
-  function cycleStatus(e, i) {
-    e.stopPropagation();
-    chapters[i].status = STATUS_CYCLE[(STATUS_CYCLE.indexOf(chapters[i].status) + 1) % STATUS_CYCLE.length];
-    save('chapters', chapters);
-    renderChapters();
-  }
-
+  function cycleStatus(e, i) { e.stopPropagation(); chapters[i].status = STATUS_CYCLE[(STATUS_CYCLE.indexOf(chapters[i].status) + 1) % STATUS_CYCLE.length]; save('chapters', chapters); renderChapters(); }
   function renameChapter(e, i) {
-    e.stopPropagation();
-    const newName = prompt('新名称', chapters[i].name);
+    e.stopPropagation(); const newName = prompt('新名称', chapters[i].name);
     if (newName && newName.trim()) {
-      const oldName = chapters[i].name;
-      chapters[i].name = newName.trim();
+      const oldName = chapters[i].name; chapters[i].name = newName.trim();
       if (notes[oldName]) { notes[newName.trim()] = notes[oldName]; delete notes[oldName]; save('notes', notes); }
-      save('chapters', chapters);
-      renderChapters();
-      updateWelcomeCard();
+      save('chapters', chapters); renderChapters(); updateWelcomeCard();
     }
   }
-
   function deleteChapter(e, i) {
-    e.stopPropagation();
-    if (!confirm('删除「' + chapters[i].name + '」？')) return;
-    chapters.splice(i, 1);
-    if (activeChapterIndex >= chapters.length) activeChapterIndex = Math.max(0, chapters.length - 1);
-    save('chapters', chapters);
-    save('activeChapter', activeChapterIndex);
-    renderChapters();
-    updateWelcomeCard();
+    e.stopPropagation(); if (!confirm('删除「' + chapters[i].name + '」？')) return;
+    chapters.splice(i, 1); if (activeChapterIndex >= chapters.length) activeChapterIndex = Math.max(0, chapters.length - 1);
+    save('chapters', chapters); save('activeChapter', activeChapterIndex); renderChapters(); updateWelcomeCard();
   }
-
   function updateProgress() {
-    const done = chapters.filter(c => c.status === 'done').length;
-    const total = chapters.length;
-    const pct = total ? Math.round(done / total * 100) : 0;
+    const done = chapters.filter(c => c.status === 'done').length; const total = chapters.length; const pct = total ? Math.round(done / total * 100) : 0;
     document.getElementById('ring-label').textContent = pct + '%';
     document.getElementById('ring-fill').style.strokeDashoffset = 138 - (138 * pct / 100);
     document.getElementById('progress-sub').textContent = `已完成 ${done}/${total} 章`;
   }
-
-  function toggleAddChapter() {
-    const form = document.getElementById('add-chapter-form');
-    form.classList.toggle('show');
-    if (form.classList.contains('show')) document.getElementById('new-chapter-name').focus();
-    else document.getElementById('new-chapter-name').value = '';
-  }
-
+  function toggleAddChapter() { const form = document.getElementById('add-chapter-form'); form.classList.toggle('show'); if (form.classList.contains('show')) document.getElementById('new-chapter-name').focus(); else document.getElementById('new-chapter-name').value = ''; }
   function addChapter() {
-    const input = document.getElementById('new-chapter-name');
-    const name = input.value.trim();
-    if (!name) return;
-    chapters.push({ name, status: 'todo' });
-    save('chapters', chapters);
-    renderChapters();
-    input.value = '';
-    toggleAddChapter();
+    const input = document.getElementById('new-chapter-name'); const name = input.value.trim(); if (!name) return;
+    chapters.push({ name, status: 'todo' }); save('chapters', chapters); renderChapters(); input.value = ''; toggleAddChapter();
   }
 
   function updateWelcomeCard() {
     const ch = chapters[activeChapterIndex];
-    if (ch) {
-      document.getElementById('current-chapter-val').textContent = ch.name.replace(/第.+章\s*·\s*/, '');
-      document.getElementById('current-chapter-sub').textContent = ch.name;
-    }
+    if (ch) { document.getElementById('current-chapter-val').textContent = ch.name.replace(/第.+章\s*·\s*/, ''); document.getElementById('current-chapter-sub').textContent = ch.name; }
     const todayCards = getTodayReviewCards();
     document.getElementById('review-count').textContent = todayCards.length > 0 ? todayCards.length + ' 张' : '—';
     document.getElementById('review-sub').textContent = todayCards.length > 0 ? todayCards.map(c => c.title).slice(0,2).join(' · ') + (todayCards.length > 2 ? '…' : '') : '学完一章后自动生成';
-
-    fetch(API_BASE + '/hotspot')
-      .then(r => r.json())
-      .then(data => {
-        if (data.success && data.hotspot) {
-          const hotspotTitle = document.getElementById('hotspot-title');
-          const hotspotSub = document.getElementById('hotspot-sub');
-          if (hotspotTitle) {
-            hotspotTitle.textContent = data.hotspot.title.length > 20 
-              ? data.hotspot.title.substring(0, 20) + '…' 
-              : data.hotspot.title;
-            hotspotTitle.title = data.hotspot.title;
-            hotspotTitle.style.cursor = data.hotspot.url ? 'pointer' : 'default';
-            hotspotTitle.onclick = data.hotspot.url 
-              ? () => window.open(data.hotspot.url, '_blank') 
-              : null;
-          }
-          if (hotspotSub) {
-            hotspotSub.textContent = data.hotspot.source + (data.hotspot.time ? ' · ' + data.hotspot.time : '');
-          }
-        }
-      })
-      .catch(() => {});
+    fetch(API_BASE + '/hotspot').then(r => r.json()).then(data => {
+      if (data.success && data.hotspot) {
+        const h = document.getElementById('hotspot-title'), s = document.getElementById('hotspot-sub');
+        if (h) { h.textContent = data.hotspot.title.length > 20 ? data.hotspot.title.substring(0, 20) + '…' : data.hotspot.title; h.title = data.hotspot.title; h.style.cursor = data.hotspot.url ? 'pointer' : 'default'; h.onclick = data.hotspot.url ? () => window.open(data.hotspot.url, '_blank') : null; }
+        if (s) s.textContent = data.hotspot.source + (data.hotspot.time ? ' · ' + data.hotspot.time : '');
+      }
+    }).catch(() => {});
   }
 
   let notesTimer = null;
   document.getElementById('notes-textarea').addEventListener('input', function() {
-    const ch = chapters[activeChapterIndex];
-    if (!ch) return;
+    const ch = chapters[activeChapterIndex]; if (!ch) return;
     document.getElementById('save-hint').textContent = '保存中…';
     clearTimeout(notesTimer);
-    notesTimer = setTimeout(() => {
-      notes[ch.name] = this.value;
-      save('notes', notes);
-      document.getElementById('save-hint').textContent = '已保存 ✓';
-    }, 800);
+    notesTimer = setTimeout(() => { notes[ch.name] = this.value; save('notes', notes); document.getElementById('save-hint').textContent = '已保存 ✓'; }, 800);
   });
 
-  // ── 右侧滑出面板 ──
-  function openEvalPanel(content) {
-    document.getElementById('eval-slide-body').textContent = content;
+  // ── 评估历史面板 ──
+  function renderEvalHistory() {
+    const body = document.getElementById('eval-slide-body');
+    if (evalHistory.length === 0) { body.innerHTML = '<div class="eval-empty">暂无评估记录<br><br>提交DS评估后，结果会出现在这里</div>'; return; }
+    body.innerHTML = evalHistory.map((item, i) => `
+      <div class="eval-history-item">
+        <div class="eval-history-time">📋 评估 · ${item.time}</div>
+        <div class="eval-history-content">${item.content}</div>
+      </div>`).join('');
+  }
+  function addEvalResult(content) {
+    const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+    evalHistory.unshift({ content, time: timeStr });
+    renderEvalHistory();
     document.getElementById('eval-slide-panel').classList.add('show');
     document.getElementById('eval-mask').classList.add('show');
   }
-
-  function closeEvalPanel() {
-    document.getElementById('eval-slide-panel').classList.remove('show');
-    document.getElementById('eval-mask').classList.remove('show');
+  function closeEvalPanel() { document.getElementById('eval-slide-panel').classList.remove('show'); document.getElementById('eval-mask').classList.remove('show'); }
+  function copyLatestEval() {
+    if (evalHistory.length === 0) return;
+    navigator.clipboard.writeText(evalHistory[0].content).then(() => {
+      const btn = document.querySelector('.eval-slide-copy-btn'); btn.textContent = '已复制 ✓'; setTimeout(() => { btn.textContent = '复制最新结果'; }, 1500);
+    }).catch(() => alert('复制失败'));
   }
+  function clearEvalHistory() { if (confirm('确定要清除所有评估记录吗？')) { evalHistory = []; renderEvalHistory(); } }
 
-  function copyEvalSlideResult() {
-    const text = document.getElementById('eval-slide-body').textContent;
-    if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      const btn = document.querySelector('.eval-slide-copy-btn');
-      btn.textContent = '已复制 ✓';
-      setTimeout(() => { btn.textContent = '复制评估结果'; }, 1500);
-    }).catch(() => {
-      alert('复制失败，请手动复制');
-    });
-  }
-
-  // ── 保存笔记到阿里云 ──
   async function saveNoteToCloud() {
-    const textarea = document.getElementById('notes-textarea');
-    const content = textarea.value.trim();
-    const ch = chapters[activeChapterIndex];
-    if (!ch || !content) {
-      alert('请先选择章节并写入笔记内容');
-      return;
-    }
-
-    const btn = document.getElementById('save-note-btn');
-    btn.disabled = true;
-    btn.textContent = '⏳ 保存中...';
-
+    const textarea = document.getElementById('notes-textarea'); const content = textarea.value.trim();
+    const ch = chapters[activeChapterIndex]; if (!ch || !content) { alert('请先选择章节并写入笔记内容'); return; }
+    const btn = document.getElementById('save-note-btn'); btn.disabled = true; btn.textContent = '⏳ 保存中...';
     try {
-      const evalContent = document.getElementById('eval-slide-body').textContent || '';
-      const response = await fetch(API_BASE + '/save-note', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chapter: ch.name, content, evaluation: evalContent })
-      });
+      const evalContent = evalHistory.map(e => `[${e.time}] ${e.content}`).join('\n\n');
+      const response = await fetch(API_BASE + '/save-note', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chapter: ch.name, content, evaluation: evalContent }) });
       const data = await response.json();
-      if (data.success) {
-        alert('✓ 笔记已保存到阿里云');
-      } else {
-        alert('⚠️ 保存失败：' + (data.message || '未知错误'));
-      }
-    } catch (err) {
-      alert('⚠️ 网络错误，请检查后端服务是否在线。');
-    }
-
-    btn.disabled = false;
-    btn.textContent = '💾 保存到云端';
+      alert(data.success ? '✓ 笔记已保存到阿里云' : '⚠️ 保存失败：' + (data.message || '未知错误'));
+    } catch (err) { alert('⚠️ 网络错误'); }
+    btn.disabled = false; btn.textContent = '💾 保存到云端';
   }
 
-  // ── 笔记评估 ──
   async function evaluateNote() {
-    const textarea = document.getElementById('notes-textarea');
-    const content = textarea.value.trim();
-    if (!content) {
-      alert('请先在笔记中写入内容');
-      return;
-    }
-
-    const btn = document.getElementById('evaluate-btn');
-    btn.disabled = true;
-    btn.textContent = '⏳ 评估中...';
-
+    const textarea = document.getElementById('notes-textarea'); const content = textarea.value.trim();
+    if (!content) { alert('请先在笔记中写入内容'); return; }
+    const btn = document.getElementById('evaluate-btn'); btn.disabled = true; btn.textContent = '⏳ 评估中...';
     try {
-      const response = await fetch(API_BASE + '/evaluate-note', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ content })
-      });
+      const response = await fetch(API_BASE + '/evaluate-note', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content }) });
       const data = await response.json();
-
-      if (data.success) {
-        openEvalPanel(data.evaluation);
-      } else {
-        openEvalPanel('评估失败：' + (data.message || '未知错误'));
-      }
-    } catch (err) {
-      openEvalPanel('网络错误，请检查后端服务是否在线。');
-    }
-
-    btn.disabled = false;
-    btn.textContent = '📋 提交DS评估';
+      if (data.success) { addEvalResult(data.evaluation); } else { addEvalResult('评估失败：' + (data.message || '未知错误')); }
+    } catch (err) { addEvalResult('网络错误，请检查后端服务是否在线。'); }
+    btn.disabled = false; btn.textContent = '📋 提交DS评估';
   }
 
   function renderReports() {
     const list = document.getElementById('report-list');
-    if (reports.length === 0) {
-      list.innerHTML = '<div class="log-empty">📋 写完第一份报告后<br>这里会出现记录</div>';
-      return;
-    }
-    list.innerHTML = reports.slice().reverse().map(r => `
-      <div class="log-item">
-        <div class="log-date">${r.date}</div>
-        <div class="log-title">${r.chapter}</div>
-        <span class="log-tag">掌握 ${r.mastered.length} · 薄弱 ${r.weak_points.length}</span>
-      </div>`).join('');
+    if (reports.length === 0) { list.innerHTML = '<div class="log-empty">📋 写完第一份报告后<br>这里会出现记录</div>'; return; }
+    list.innerHTML = reports.slice().reverse().map(r => `<div class="log-item"><div class="log-date">${r.date}</div><div class="log-title">${r.chapter}</div><span class="log-tag">掌握 ${r.mastered.length} · 薄弱 ${r.weak_points.length}</span></div>`).join('');
   }
-
   function openReport() { document.getElementById('report-modal').classList.add('show'); }
   function closeReport() { document.getElementById('report-modal').classList.remove('show'); }
-
   function saveReport() {
-    const val = document.getElementById('report-textarea').value.trim();
-    if (!val) return;
-
-    const reportData = {
-      date: now.toISOString().slice(0, 10),
-      chapter: chapters[activeChapterIndex]?.name || '未知章节',
-      mastered: [],
-      weak_points: [],
-      summary: val
-    };
-
-    const chapterMatch = val.match(/章节[：:]\s*(.+)/);
-    if (chapterMatch) reportData.chapter = chapterMatch[1].trim();
-    const masteredMatch = val.match(/已掌握[：:]\s*(.+)/);
-    if (masteredMatch) reportData.mastered = masteredMatch[1].split(/[,，、]/).map(s => s.trim()).filter(Boolean);
-    const weakMatch = val.match(/薄弱[：:]\s*(.+)/);
-    if (weakMatch) {
-      reportData.weak_points = weakMatch[1].split(/[,，、]/).map(s => s.trim()).filter(Boolean).map(item => {
-        const typeMatch = item.match(/[（(](.+)[）)]/);
-        const type = typeMatch ? typeMatch[1].trim() : '概念混淆';
-        updateErrorTag(type);
-        return { point: typeMatch ? item.replace(/[（(].+[）)]/, '').trim() : item, error_type: type, error_count: 1 };
-      });
-    }
-
-    reports.push(reportData);
-    save('reports', reports);
-    renderReports();
-    renderErrorTags();
-    closeReport();
-    document.getElementById('report-textarea').value = '';
-
-    if (reportData.weak_points.length > 0 && chapters[activeChapterIndex]) {
-      chapters[activeChapterIndex].status = 'weak';
-      save('chapters', chapters);
-      renderChapters();
-    }
-
+    const val = document.getElementById('report-textarea').value.trim(); if (!val) return;
+    const reportData = { date: now.toISOString().slice(0, 10), chapter: chapters[activeChapterIndex]?.name || '未知章节', mastered: [], weak_points: [], summary: val };
+    const cm = val.match(/章节[：:]\s*(.+)/); if (cm) reportData.chapter = cm[1].trim();
+    const mm = val.match(/已掌握[：:]\s*(.+)/); if (mm) reportData.mastered = mm[1].split(/[,，、]/).map(s => s.trim()).filter(Boolean);
+    const wm = val.match(/薄弱[：:]\s*(.+)/);
+    if (wm) { reportData.weak_points = wm[1].split(/[,，、]/).map(s => s.trim()).filter(Boolean).map(item => { const tm = item.match(/[（(](.+)[）)]/); const type = tm ? tm[1].trim() : '概念混淆'; updateErrorTag(type); return { point: tm ? item.replace(/[（(].+[）)]/, '').trim() : item, error_type: type, error_count: 1 }; }); }
+    reports.push(reportData); save('reports', reports); renderReports(); renderErrorTags(); closeReport(); document.getElementById('report-textarea').value = '';
+    if (reportData.weak_points.length > 0 && chapters[activeChapterIndex]) { chapters[activeChapterIndex].status = 'weak'; save('chapters', chapters); renderChapters(); }
     fetch(API_BASE + '/report', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(reportData) }).catch(() => {});
-
     setTimeout(() => openFlashcard(reportData.weak_points), 300);
   }
 
   const TAG_NAMES = ['概念混淆', '逻辑断层', '记忆不牢', '应用障碍'];
-  function updateErrorTag(typeName) {
-    const i = TAG_NAMES.indexOf(typeName);
-    if (i >= 0) { errorTags[i] = Math.min(1, errorTags[i] + 0.15); save('errorTags', errorTags); }
-  }
-  function renderErrorTags() {
-    errorTags.forEach((val, i) => {
-      document.getElementById('tag-bar-' + i).style.width = (val * 100) + '%';
-      document.getElementById('tag-val-' + i).textContent = val.toFixed(1);
-    });
-  }
+  function updateErrorTag(t) { const i = TAG_NAMES.indexOf(t); if (i >= 0) { errorTags[i] = Math.min(1, errorTags[i] + 0.15); save('errorTags', errorTags); } }
+  function renderErrorTags() { errorTags.forEach((v, i) => { document.getElementById('tag-bar-' + i).style.width = (v * 100) + '%'; document.getElementById('tag-val-' + i).textContent = v.toFixed(1); }); }
 
   let pendingCards = [];
-
-  function openFlashcard(weakPoints) {
-    pendingCards = weakPoints.map(w => ({ title: w.point, content: '' }));
-    if (pendingCards.length === 0) pendingCards.push({ title: '', content: '' });
-    renderCardList();
-    document.getElementById('flashcard-modal').classList.add('show');
-  }
-
-  function renderCardList() {
-    const list = document.getElementById('card-list');
-    list.innerHTML = pendingCards.map((c, i) => `
-      <div class="card-item">
-        <div class="card-item-header">
-          <span class="card-num">${String(i+1).padStart(2,'0')}</span>
-          <input class="card-title-input" placeholder="知识点标题（正面）" value="${c.title}" oninput="pendingCards[${i}].title=this.value">
-        </div>
-        <textarea class="card-body-input" placeholder="你的理解 / 正确内容（背面）" oninput="pendingCards[${i}].content=this.value">${c.content}</textarea>
-      </div>`).join('');
-  }
-
-  function addCard() {
-    pendingCards.push({ title: '', content: '' });
-    renderCardList();
-    document.getElementById('card-list').lastElementChild?.querySelector('input')?.focus();
-  }
-
+  function openFlashcard(wp) { pendingCards = wp.map(w => ({ title: w.point, content: '' })); if (pendingCards.length === 0) pendingCards.push({ title: '', content: '' }); renderCardList(); document.getElementById('flashcard-modal').classList.add('show'); }
+  function renderCardList() { document.getElementById('card-list').innerHTML = pendingCards.map((c, i) => `<div class="card-item"><div class="card-item-header"><span class="card-num">${String(i+1).padStart(2,'0')}</span><input class="card-title-input" value="${c.title}" oninput="pendingCards[${i}].title=this.value"></div><textarea class="card-body-input" oninput="pendingCards[${i}].content=this.value">${c.content}</textarea></div>`).join(''); }
+  function addCard() { pendingCards.push({ title: '', content: '' }); renderCardList(); }
   function saveFlashcards() {
-    const today = now.toISOString().slice(0, 10);
-    const newCards = pendingCards.filter(c => c.title.trim()).map(c => ({
-      title: c.title.trim(),
-      content: c.content.trim(),
-      date: today,
-      nextReview: getNextReviewDate(1)
-    }));
-    flashcards = flashcards.concat(newCards);
-    save('flashcards', flashcards);
-    renderReviewPush();
-    updateWelcomeCard();
-    closeFlashcard();
+    const t = now.toISOString().slice(0, 10); const nc = pendingCards.filter(c => c.title.trim()).map(c => ({ title: c.title.trim(), content: c.content.trim(), date: t, nextReview: getNextReviewDate(1) }));
+    flashcards = flashcards.concat(nc); save('flashcards', flashcards); renderReviewPush(); updateWelcomeCard(); closeFlashcard();
   }
-
-  function closeFlashcard() {
-    document.getElementById('flashcard-modal').classList.remove('show');
-    pendingCards = [];
-  }
-
-  function getNextReviewDate(daysLater) {
-    const d = new Date();
-    d.setDate(d.getDate() + daysLater);
-    return d.toISOString().slice(0, 10);
-  }
-
-  function getTodayReviewCards() {
-    const today = now.toISOString().slice(0, 10);
-    return flashcards.filter(c => c.nextReview <= today);
-  }
-
+  function closeFlashcard() { document.getElementById('flashcard-modal').classList.remove('show'); pendingCards = []; }
+  function getNextReviewDate(d) { const nd = new Date(); nd.setDate(nd.getDate() + d); return nd.toISOString().slice(0, 10); }
+  function getTodayReviewCards() { const t = now.toISOString().slice(0, 10); return flashcards.filter(c => c.nextReview <= t); }
   function renderReviewPush() {
-    const todayCards = getTodayReviewCards();
-    const list = document.getElementById('review-push-list');
-    if (todayCards.length === 0) {
-      list.innerHTML = '<div class="push-item" style="color:var(--text-muted);font-size:12px">学完今天的内容，卡片会在这里出现</div>';
-      return;
-    }
-    list.innerHTML = todayCards.slice(0, 5).map(c => `
-      <div class="push-item" onclick="openSingleCard('${c.title.replace(/'/g,"\\'")}')">
-        <span class="tag tag-weak">复习</span>${c.title}
-      </div>`).join('');
+    const tc = getTodayReviewCards(); const list = document.getElementById('review-push-list');
+    if (tc.length === 0) { list.innerHTML = '<div class="push-item" style="color:var(--text-muted);font-size:12px">学完今天的内容，卡片会在这里出现</div>'; return; }
+    list.innerHTML = tc.slice(0, 5).map(c => `<div class="push-item" onclick="openSingleCard('${c.title.replace(/'/g,"\\'")}')"><span class="tag tag-weak">复习</span>${c.title}</div>`).join('');
   }
-
-  function openReviewModal() {
-    const cards = getTodayReviewCards();
-    if (cards.length === 0) return;
-    const list = document.getElementById('review-card-list');
-    list.innerHTML = cards.map((c, i) => `
-      <div class="review-card-item" onclick="openSingleCard('${c.title.replace(/'/g,"\\'")}')">
-        <span class="review-card-num">${String(i+1).padStart(2,'0')}</span>
-        <span class="review-card-title">${c.title}</span>
-        <span class="review-card-arrow">→</span>
-      </div>`).join('');
-    document.getElementById('review-modal').classList.add('show');
-  }
-
+  function openReviewModal() { const c = getTodayReviewCards(); if (c.length === 0) return; document.getElementById('review-card-list').innerHTML = c.map((c, i) => `<div class="review-card-item" onclick="openSingleCard('${c.title.replace(/'/g,"\\'")}')"><span class="review-card-num">${String(i+1).padStart(2,'0')}</span><span class="review-card-title">${c.title}</span><span class="review-card-arrow">→</span></div>`).join(''); document.getElementById('review-modal').classList.add('show'); }
   function closeReviewModal() { document.getElementById('review-modal').classList.remove('show'); }
-
-  function openSingleCard(title) {
-    const card = flashcards.find(c => c.title === title);
-    if (!card) return;
-    document.getElementById('single-card-title').textContent = card.title;
-    document.getElementById('single-card-content').textContent = card.content || '（暂无背面内容）';
-    document.getElementById('single-card-content').classList.remove('show');
-    document.getElementById('reveal-btn').style.display = 'inline-block';
-    document.getElementById('review-modal').classList.remove('show');
-    document.getElementById('single-card-modal').classList.add('show');
-  }
-
-  function revealCard() {
-    document.getElementById('single-card-content').classList.add('show');
-    document.getElementById('reveal-btn').style.display = 'none';
-  }
-
-  function closeSingleCard() {
-    document.getElementById('single-card-modal').classList.remove('show');
-    document.getElementById('review-modal').classList.add('show');
-  }
+  function openSingleCard(title) { const c = flashcards.find(c => c.title === title); if (!c) return; document.getElementById('single-card-title').textContent = c.title; document.getElementById('single-card-content').textContent = c.content || '（暂无背面内容）'; document.getElementById('single-card-content').classList.remove('show'); document.getElementById('reveal-btn').style.display = 'inline-block'; document.getElementById('review-modal').classList.remove('show'); document.getElementById('single-card-modal').classList.add('show'); }
+  function revealCard() { document.getElementById('single-card-content').classList.add('show'); document.getElementById('reveal-btn').style.display = 'none'; }
+  function closeSingleCard() { document.getElementById('single-card-modal').classList.remove('show'); document.getElementById('review-modal').classList.add('show'); }
 
   let seconds = 0, timerInterval = null, breakShown = false, windDownShown = false;
-
-  function startTimer(resumeStartTime) {
+  function startTimer(rst) {
     if (timerInterval) return;
-
-    if (resumeStartTime) {
-      seconds = Math.floor((Date.now() - resumeStartTime) / 1000);
-    } else {
-      localStorage.setItem('jingshu_timer_start', Date.now().toString());
-    }
-
-    timerInterval = setInterval(() => {
-      seconds++;
-      const m = String(Math.floor(seconds / 60)).padStart(2, '0');
-      const s = String(seconds % 60).padStart(2, '0');
-      const display = `专注中 ${m}:${s}`;
-      document.getElementById('timer-display').textContent = display;
-      document.getElementById('study-timer').textContent = `${m}:${s}`;
-      if (seconds >= 1800 && !breakShown) {
-        showBreakNow();
-        breakShown = true;
-      }
-      const now = new Date();
-      if (now.getHours() === 22 && now.getMinutes() >= 30 && !windDownShown) {
-        showWindDown();
-        windDownShown = true;
-      }
-    }, 1000);
+    if (rst) { seconds = Math.floor((Date.now() - rst) / 1000); } else { localStorage.setItem('jingshu_timer_start', Date.now().toString()); }
+    timerInterval = setInterval(() => { seconds++; const m = String(Math.floor(seconds / 60)).padStart(2, '0'), s = String(seconds % 60).padStart(2, '0'); document.getElementById('timer-display').textContent = `专注中 ${m}:${s}`; document.getElementById('study-timer').textContent = `${m}:${s}`; if (seconds >= 1800 && !breakShown) { showBreakNow(); breakShown = true; } const n = new Date(); if (n.getHours() === 22 && n.getMinutes() >= 30 && !windDownShown) { showWindDown(); windDownShown = true; } }, 1000);
   }
+  function showBreakNow() { playChime(); sendNotification('🌿 该休息一下了', '起来喝点水，转一圈，转头+耸肩+放松。坐直，抬头。'); document.getElementById('break-modal').classList.add('show'); }
+  function closeBreak() { document.getElementById('break-modal').classList.remove('show'); seconds = 0; breakShown = false; localStorage.removeItem('jingshu_timer_start'); clearInterval(timerInterval); timerInterval = null; startTimer(); }
+  function showWindDown() { playChime(); sendNotification('🌙 该收摊了', '十点半了，关掉工作标签页。把手机放到桌子对面。'); document.getElementById('wind-down-modal').classList.add('show'); }
+  function closeWindDown() { document.getElementById('wind-down-modal').classList.remove('show'); }
 
-  function showBreakNow() {
-    playChime();
-    sendNotification('🌿 该休息一下了', '起来喝点水，转一圈，转头+耸肩+放松。坐直，抬头。');
-    document.getElementById('break-modal').classList.add('show');
-  }
-
-  function closeBreak() {
-    document.getElementById('break-modal').classList.remove('show');
-    seconds = 0;
-    breakShown = false;
-    localStorage.removeItem('jingshu_timer_start');
-    clearInterval(timerInterval);
-    timerInterval = null;
-    startTimer();
-  }
-
-  function showWindDown() {
-    playChime();
-    sendNotification('🌙 该收摊了', '十点半了，关掉工作标签页。把手机放到桌子对面。');
-    document.getElementById('wind-down-modal').classList.add('show');
-  }
-
-  function closeWindDown() {
-    document.getElementById('wind-down-modal').classList.remove('show');
-  }
-
-  function switchTab(el, view) {
-    if (el.classList.contains('disabled')) return;
-    document.querySelectorAll('.nav-tab:not(.disabled)').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById('welcome-view').style.display = 'none';
-    document.getElementById('notes-view').style.display = 'none';
-    document.getElementById('study-view').style.display = 'none';
-    if (view === 'welcome') document.getElementById('welcome-view').style.display = 'flex';
-    else if (view === 'study') { document.getElementById('study-view').style.display = 'flex'; startTimer(); }
-  }
-
-  function startStudy() {
-    const ch = chapters[activeChapterIndex];
-    if (ch) openNotesView(activeChapterIndex);
-    else { document.getElementById('welcome-view').style.display = 'none'; document.getElementById('study-view').style.display = 'flex'; startTimer(); }
-  }
-
-  function sendMsg() {
-    const box = document.getElementById('input-box'), text = box.value.trim();
-    if (!text) return;
-    const msgs = document.getElementById('chat-messages');
-    const msg = document.createElement('div');
-    msg.className = 'msg user';
-    msg.innerHTML = `<div class="msg-avatar">你</div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`;
-    msgs.appendChild(msg);
-    box.value = ''; box.style.height = 'auto';
-    msgs.scrollTop = msgs.scrollHeight;
-  }
+  function switchTab(el, view) { if (el.classList.contains('disabled')) return; document.querySelectorAll('.nav-tab:not(.disabled)').forEach(t => t.classList.remove('active')); el.classList.add('active'); document.getElementById('welcome-view').style.display = 'none'; document.getElementById('notes-view').style.display = 'none'; document.getElementById('study-view').style.display = 'none'; if (view === 'welcome') document.getElementById('welcome-view').style.display = 'flex'; else if (view === 'study') { document.getElementById('study-view').style.display = 'flex'; startTimer(); } }
+  function startStudy() { const ch = chapters[activeChapterIndex]; if (ch) openNotesView(activeChapterIndex); else { document.getElementById('welcome-view').style.display = 'none'; document.getElementById('study-view').style.display = 'flex'; startTimer(); } }
+  function sendMsg() { const box = document.getElementById('input-box'), text = box.value.trim(); if (!text) return; const msgs = document.getElementById('chat-messages'); const msg = document.createElement('div'); msg.className = 'msg user'; msg.innerHTML = `<div class="msg-avatar">你</div><div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`; msgs.appendChild(msg); box.value = ''; box.style.height = 'auto'; msgs.scrollTop = msgs.scrollHeight; }
   function handleKey(e) { if (e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();} }
   function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; }
-
-  document.querySelectorAll('.modal-overlay').forEach(el => {
-    el.addEventListener('click', e => { if(e.target===el) el.classList.remove('show'); });
-  });
+  document.querySelectorAll('.modal-overlay').forEach(el => { el.addEventListener('click', e => { if(e.target===el) el.classList.remove('show'); }); });
 
   init();
 </script>
