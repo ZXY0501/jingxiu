@@ -165,23 +165,26 @@
   .notes-textarea::placeholder { color: var(--text-muted); font-weight: 300; }
 
   /* 评估按钮和结果面板 */
-  .evaluate-area { padding: 16px 40px 20px; border-top: 1px solid var(--border-light); flex-shrink: 0; }
-  .evaluate-btn {
+  .evaluate-area { padding: 16px 40px 20px; border-top: 1px solid var(--border-light); flex-shrink: 0; display: flex; gap: 12px; align-items: flex-start; }
+  .evaluate-btn, .save-note-btn {
     display: flex; align-items: center; gap: 8px;
     padding: 10px 20px;
-    background: var(--green-soft);
     border: none; border-radius: 10px;
-    color: white;
     font-family: 'Noto Serif SC', serif; font-size: 14px;
     cursor: pointer; transition: all 0.2s;
     box-shadow: 0 2px 8px rgba(138,171,126,0.25);
+    color: white;
   }
+  .evaluate-btn { background: var(--green-soft); }
   .evaluate-btn:hover { background: #7a9b6e; transform: translateY(-1px); }
   .evaluate-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .save-note-btn { background: var(--brown-warm); }
+  .save-note-btn:hover { background: #7a5f4e; transform: translateY(-1px); }
+  .save-note-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
   .evaluate-result {
+    flex: 1;
     display: none;
-    margin-top: 16px;
     background: var(--green-mist);
     border: 1px solid var(--green-pale);
     border-radius: 12px;
@@ -418,6 +421,9 @@
       <div class="evaluate-area">
         <button class="evaluate-btn" id="evaluate-btn" onclick="evaluateNote()">
           📋 提交DS评估
+        </button>
+        <button class="save-note-btn" id="save-note-btn" onclick="saveNoteToCloud()">
+          💾 保存到云端
         </button>
         <div class="evaluate-result" id="evaluate-result">
           <div class="eval-header">
@@ -717,12 +723,37 @@
     updateProgress();
   }
 
-  function selectChapter(i) {
+  async function selectChapter(i) {
     activeChapterIndex = i;
     save('activeChapter', i);
     renderChapters();
     updateWelcomeCard();
     openNotesView(i);
+
+    // 从云端加载笔记
+    const ch = chapters[i];
+    if (!ch) return;
+    try {
+      const response = await fetch(API_BASE + '/load-note', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chapter: ch.name })
+      });
+      const data = await response.json();
+      if (data.success && data.note) {
+        document.getElementById('notes-textarea').value = data.note.content || '';
+        if (data.note.evaluation) {
+          document.getElementById('eval-content').textContent = data.note.evaluation;
+          document.getElementById('evaluate-result').classList.add('show');
+        }
+      } else {
+        // 云端没有，回退到本地
+        document.getElementById('notes-textarea').value = notes[ch.name] || '';
+      }
+    } catch (e) {
+      // 网络失败，回退到本地
+      document.getElementById('notes-textarea').value = notes[ch.name] || '';
+    }
   }
 
   function openNotesView(i) {
@@ -733,7 +764,6 @@
     document.getElementById('notes-title').textContent = ch.name;
     document.getElementById('study-chapter-title').textContent = ch.name;
     document.getElementById('notes-textarea').value = notes[ch.name] || '';
-    // 重置评估区域
     document.getElementById('evaluate-result').classList.remove('show');
     document.getElementById('eval-content').textContent = '';
     document.querySelectorAll('.nav-tab:not(.disabled)').forEach(t => t.classList.remove('active'));
@@ -846,6 +876,41 @@
       document.getElementById('save-hint').textContent = '已保存 ✓';
     }, 800);
   });
+
+  // ── 保存笔记到阿里云 ──
+  async function saveNoteToCloud() {
+    const textarea = document.getElementById('notes-textarea');
+    const content = textarea.value.trim();
+    const ch = chapters[activeChapterIndex];
+    if (!ch || !content) {
+      alert('请先选择章节并写入笔记内容');
+      return;
+    }
+
+    const btn = document.getElementById('save-note-btn');
+    btn.disabled = true;
+    btn.textContent = '⏳ 保存中...';
+
+    try {
+      const evalContent = document.getElementById('eval-content').textContent || '';
+      const response = await fetch(API_BASE + '/save-note', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chapter: ch.name, content, evaluation: evalContent })
+      });
+      const data = await response.json();
+      if (data.success) {
+        alert('✓ 笔记已保存到阿里云');
+      } else {
+        alert('⚠️ 保存失败：' + (data.message || '未知错误'));
+      }
+    } catch (err) {
+      alert('⚠️ 网络错误，请检查后端服务是否在线。');
+    }
+
+    btn.disabled = false;
+    btn.textContent = '💾 保存到云端';
+  }
 
   // ── 笔记评估 ──
   async function evaluateNote() {
