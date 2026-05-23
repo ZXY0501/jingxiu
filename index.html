@@ -76,6 +76,7 @@
 
   .main { flex: 1; display: flex; overflow: hidden; }
 
+  /* LEFT PANEL */
   .left-panel { width: 300px; min-width: 300px; border-right: 1px solid var(--border-light); display: flex; flex-direction: column; background: var(--cream); overflow-y: auto; }
   .left-panel::-webkit-scrollbar { width: 4px; }
   .left-panel::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
@@ -150,6 +151,7 @@
   .start-btn { width: 100%; padding: 16px; background: var(--green-soft); border: none; border-radius: 12px; color: white; font-family: 'Noto Serif SC', serif; font-size: 15px; cursor: pointer; transition: all 0.2s; letter-spacing: 0.05em; box-shadow: 0 4px 16px rgba(138,171,126,0.3); }
   .start-btn:hover { background: #7a9b6e; transform: translateY(-1px); }
 
+  /* NOTES VIEW */
   #notes-view { flex: 1; display: none; flex-direction: column; overflow: hidden; position: relative; }
   .notes-header { padding: 16px 32px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
   .notes-title { font-size: 16px; font-weight: 500; color: var(--text-dark); }
@@ -178,25 +180,49 @@
   .save-note-btn:hover { background: #7a5f4e; transform: translateY(-1px); }
   .save-note-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-  /* 右侧滑出面板 */
-  .eval-slide-panel {
+  /* 右侧覆盖侧边栏 */
+  .eval-drawer-handle {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px; height: 72px;
+    background: var(--cream);
+    border: 1px solid var(--border-light);
+    border-right: none;
+    border-radius: 10px 0 0 10px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-muted); font-size: 14px;
+    z-index: 91;
+    transition: all 0.2s;
+    box-shadow: -2px 0 8px rgba(100,80,60,0.06);
+    writing-mode: vertical-lr;
+    letter-spacing: 0.06em;
+    font-size: 10px;
+    padding: 6px 0;
+  }
+  .eval-drawer-handle:hover { background: var(--green-mist); color: var(--green-soft); border-color: var(--green-pale); }
+  .eval-drawer-handle.open { right: 340px; }
+
+  .eval-drawer-panel {
     position: fixed;
     top: 56px;
     right: 0;
-    width: 420px;
+    width: 340px;
     height: calc(100vh - 56px);
     background: var(--cream);
     border-left: 1px solid var(--border-light);
-    box-shadow: -8px 0 32px rgba(100, 80, 60, 0.15);
+    box-shadow: -8px 0 32px rgba(100, 80, 60, 0.12);
     z-index: 90;
     display: flex;
     flex-direction: column;
     transform: translateX(100%);
     transition: transform 0.3s ease;
   }
-  .eval-slide-panel.show { transform: translateX(0); }
+  .eval-drawer-panel.show { transform: translateX(0); }
 
-  .eval-slide-header {
+  .eval-drawer-header {
     padding: 20px 24px 16px;
     border-bottom: 1px solid var(--border-light);
     display: flex;
@@ -204,13 +230,13 @@
     justify-content: space-between;
     flex-shrink: 0;
   }
-  .eval-slide-title {
+  .eval-drawer-title {
     font-size: 12px;
     color: var(--green-soft);
     letter-spacing: 0.08em;
     font-weight: 500;
   }
-  .eval-slide-close {
+  .eval-drawer-close {
     width: 28px; height: 28px;
     border-radius: 8px;
     border: 1px solid var(--border);
@@ -220,71 +246,38 @@
     font-size: 14px; color: var(--text-soft);
     transition: all 0.2s;
   }
-  .eval-slide-close:hover { background: var(--green-mist); color: var(--text-dark); }
+  .eval-drawer-close:hover { background: var(--green-mist); color: var(--text-dark); }
 
-  .eval-slide-body {
+  .eval-drawer-body {
     flex: 1;
     overflow-y: auto;
     padding: 20px 24px;
-  }
-  .eval-slide-body::-webkit-scrollbar { width: 4px; }
-  .eval-slide-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
-
-  .eval-history-item {
-    margin-bottom: 20px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--border-light);
-  }
-  .eval-history-item:last-child { border-bottom: none; margin-bottom: 0; }
-  .eval-history-time {
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-bottom: 8px;
-  }
-  .eval-history-content {
     font-size: 13px;
     color: var(--text-mid);
     line-height: 1.9;
     white-space: pre-wrap;
   }
+  .eval-drawer-body::-webkit-scrollbar { width: 4px; }
+  .eval-drawer-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-  .eval-empty {
-    color: var(--text-muted);
-    text-align: center;
-    padding: 40px 0;
-    font-size: 13px;
-    line-height: 2;
-  }
-
-  .eval-slide-footer {
+  .eval-drawer-footer {
     padding: 14px 24px;
     border-top: 1px solid var(--border-light);
     flex-shrink: 0;
-    display: flex;
-    gap: 10px;
   }
-  .eval-slide-copy-btn, .eval-slide-clear-btn {
-    padding: 8px 18px;
+  .eval-drawer-copy-btn {
+    width: 100%;
+    padding: 8px;
     background: white;
     border: 1px solid var(--border-light);
     border-radius: 8px;
     font-family: 'Noto Serif SC', serif;
     font-size: 12px;
+    color: var(--text-soft);
     cursor: pointer;
     transition: all 0.2s;
-    color: var(--text-soft);
   }
-  .eval-slide-copy-btn:hover { border-color: var(--green-light); color: var(--green-soft); background: var(--green-mist); }
-  .eval-slide-clear-btn:hover { border-color: #e8a87c; color: #c04040; background: #fef5f0; }
-
-  .eval-mask {
-    position: fixed;
-    inset: 0;
-    background: rgba(61, 53, 48, 0.15);
-    z-index: 89;
-    display: none;
-  }
-  .eval-mask.show { display: block; }
+  .eval-drawer-copy-btn:hover { border-color: var(--green-light); color: var(--green-soft); background: var(--green-mist); }
 
   #study-view { flex: 1; display: none; flex-direction: column; overflow: hidden; }
   .study-header { padding: 20px 32px 16px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
@@ -529,40 +522,29 @@
   </div>
 </div>
 
-<!-- EVAL SLIDE PANEL -->
-<div class="eval-mask" id="eval-mask" onclick="closeEvalPanel()"></div>
-<div class="eval-slide-panel" id="eval-slide-panel">
-  <div class="eval-slide-header">
-    <span class="eval-slide-title">📋 评估历史记录</span>
-    <button class="eval-slide-close" onclick="closeEvalPanel()">✕</button>
+<!-- 评估抽屉拉手 -->
+<div class="eval-drawer-handle" id="eval-drawer-handle" onclick="toggleEvalDrawer()">评 估</div>
+
+<!-- 评估抽屉面板 -->
+<div class="eval-drawer-panel" id="eval-drawer-panel">
+  <div class="eval-drawer-header">
+    <span class="eval-drawer-title">📋 DS评估结果</span>
+    <button class="eval-drawer-close" onclick="toggleEvalDrawer()">✕</button>
   </div>
-  <div class="eval-slide-body" id="eval-slide-body">
-    <div class="eval-empty">暂无评估记录<br><br>提交DS评估后，结果会出现在这里</div>
-  </div>
-  <div class="eval-slide-footer">
-    <button class="eval-slide-copy-btn" onclick="copyLatestEval()">复制最新结果</button>
-    <button class="eval-slide-clear-btn" onclick="clearEvalHistory()">清空历史</button>
+  <div class="eval-drawer-body" id="eval-drawer-body"></div>
+  <div class="eval-drawer-footer">
+    <button class="eval-drawer-copy-btn" onclick="copyEvalResult()">复制评估结果</button>
   </div>
 </div>
 
 <!-- BREAK MODAL -->
 <div class="modal-overlay" id="break-modal">
-  <div class="modal">
-    <div class="modal-emoji">🌿</div>
-    <div class="modal-title">学了半小时了</div>
-    <div class="modal-body">起来喝点水，转一圈，看看窗外。<br>转头 + 耸肩 + 放松，5秒钟。<br>坐直，抬头，耳朵后面应该立刻通了一下。<br>你已经很认真了。</div>
-    <button class="modal-btn" onclick="closeBreak()">好，我转一圈 🚶</button>
-  </div>
+  <div class="modal"><div class="modal-emoji">🌿</div><div class="modal-title">学了半小时了</div><div class="modal-body">起来喝点水，转一圈，看看窗外。<br>转头 + 耸肩 + 放松，5秒钟。<br>坐直，抬头，耳朵后面应该立刻通了一下。<br>你已经很认真了。</div><button class="modal-btn" onclick="closeBreak()">好，我转一圈 🚶</button></div>
 </div>
 
 <!-- WIND-DOWN MODAL -->
 <div class="modal-overlay" id="wind-down-modal">
-  <div class="modal">
-    <div class="modal-emoji">🌙</div>
-    <div class="modal-title">该收摊了</div>
-    <div class="modal-body">十点半了，关掉工作标签页。<br>让大脑知道今天结束了。<br>把手机放到桌子对面，不要放床头。</div>
-    <button class="modal-btn" onclick="closeWindDown()">好，收摊了 🌿</button>
-  </div>
+  <div class="modal"><div class="modal-emoji">🌙</div><div class="modal-title">该收摊了</div><div class="modal-body">十点半了，关掉工作标签页。<br>让大脑知道今天结束了。<br>把手机放到桌子对面，不要放床头。</div><button class="modal-btn" onclick="closeWindDown()">好，收摊了 🌿</button></div>
 </div>
 
 <!-- REPORT MODAL -->
@@ -572,10 +554,7 @@
     <p>把今天在 Gemini 学完后生成的报告粘贴进来。</p>
     <div class="report-guide">💡 建议先在 Gemini 完成学习和考核，再把生成的报告粘贴进来</div>
     <textarea id="report-textarea" placeholder="粘贴今日学习报告……&#10;&#10;例：&#10;章节：第八章 货币政策&#10;已掌握：货币政策三大工具、泰勒规则&#10;薄弱：IS-LM模型政策效果比较（概念混淆）&#10;错误次数：2次"></textarea>
-    <div class="modal-btns">
-      <button class="btn-ghost" onclick="closeReport()">取消</button>
-      <button class="btn-green" onclick="saveReport()">存入 ✓</button>
-    </div>
+    <div class="modal-btns"><button class="btn-ghost" onclick="closeReport()">取消</button><button class="btn-green" onclick="saveReport()">存入 ✓</button></div>
   </div>
 </div>
 
@@ -586,34 +565,18 @@
     <p class="sub">一个知识点一张卡片——正面是标题，背面是你的理解和正确内容。第二天会出现在复习推送里。</p>
     <div class="card-list" id="card-list"></div>
     <button class="add-card-btn" onclick="addCard()">＋ 再加一个知识点</button>
-    <div class="modal-btns">
-      <button class="btn-ghost" onclick="closeFlashcard()">跳过</button>
-      <button class="btn-green" onclick="saveFlashcards()">保存卡片 ✓</button>
-    </div>
+    <div class="modal-btns"><button class="btn-ghost" onclick="closeFlashcard()">跳过</button><button class="btn-green" onclick="saveFlashcards()">保存卡片 ✓</button></div>
   </div>
 </div>
 
 <!-- REVIEW LIST MODAL -->
 <div class="modal-overlay" id="review-modal">
-  <div class="review-modal">
-    <h3>今日待复习</h3>
-    <p class="sub">先看标题，自己回想内容，再点进去对照。</p>
-    <div class="review-card-list" id="review-card-list"></div>
-    <div class="modal-btns">
-      <button class="btn-ghost" onclick="closeReviewModal()">关闭</button>
-    </div>
-  </div>
+  <div class="review-modal"><h3>今日待复习</h3><p class="sub">先看标题，自己回想内容，再点进去对照。</p><div class="review-card-list" id="review-card-list"></div><div class="modal-btns"><button class="btn-ghost" onclick="closeReviewModal()">关闭</button></div></div>
 </div>
 
 <!-- SINGLE CARD VIEW -->
 <div class="modal-overlay" id="single-card-modal">
-  <div class="single-card">
-    <div class="card-back-label">复习卡片</div>
-    <div class="card-front-title" id="single-card-title"></div>
-    <div class="card-back-content" id="single-card-content"></div>
-    <button class="card-reveal-btn" id="reveal-btn" onclick="revealCard()">查看背面 👁</button>
-    <button class="card-back-btn" onclick="closeSingleCard()">← 返回列表</button>
-  </div>
+  <div class="single-card"><div class="card-back-label">复习卡片</div><div class="card-front-title" id="single-card-title"></div><div class="card-back-content" id="single-card-content"></div><button class="card-reveal-btn" id="reveal-btn" onclick="revealCard()">查看背面 👁</button><button class="card-back-btn" onclick="closeSingleCard()">← 返回列表</button></div>
 </div>
 
 <script>
@@ -662,7 +625,6 @@
     { text: '选择今日学习章节', done: false },
     { text: '在Gemini完成学习', done: false }
   ]);
-  let evalHistory = [];
 
   const now = new Date();
   document.getElementById('today-date').textContent = now.toLocaleDateString('zh-CN', {year:'numeric',month:'long',day:'numeric',weekday:'long'});
@@ -717,7 +679,6 @@
 
   async function selectChapter(i) {
     activeChapterIndex = i; save('activeChapter', i); renderChapters(); updateWelcomeCard();
-    evalHistory = []; renderEvalHistory();
     openNotesView(i);
     const ch = chapters[i]; if (!ch) return;
     try {
@@ -726,8 +687,7 @@
       if (data.success && data.note) {
         document.getElementById('notes-textarea').value = data.note.content || '';
         if (data.note.evaluation) {
-          evalHistory.push({ content: data.note.evaluation, time: data.note.updated_at || '' });
-          renderEvalHistory();
+          document.getElementById('eval-drawer-body').textContent = data.note.evaluation;
         }
       } else { document.getElementById('notes-textarea').value = notes[ch.name] || ''; }
     } catch (e) { document.getElementById('notes-textarea').value = notes[ch.name] || ''; }
@@ -741,6 +701,8 @@
     document.getElementById('notes-title').textContent = ch.name;
     document.getElementById('study-chapter-title').textContent = ch.name;
     document.getElementById('notes-textarea').value = notes[ch.name] || '';
+    // 关闭评估抽屉
+    closeEvalDrawer();
     document.querySelectorAll('.nav-tab:not(.disabled)').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-tab:not(.disabled)')[1].classList.add('active');
   }
@@ -794,38 +756,39 @@
     notesTimer = setTimeout(() => { notes[ch.name] = this.value; save('notes', notes); document.getElementById('save-hint').textContent = '已保存 ✓'; }, 800);
   });
 
-  // ── 评估历史面板 ──
-  function renderEvalHistory() {
-    const body = document.getElementById('eval-slide-body');
-    if (evalHistory.length === 0) { body.innerHTML = '<div class="eval-empty">暂无评估记录<br><br>提交DS评估后，结果会出现在这里</div>'; return; }
-    body.innerHTML = evalHistory.map((item, i) => `
-      <div class="eval-history-item">
-        <div class="eval-history-time">📋 评估 · ${item.time}</div>
-        <div class="eval-history-content">${item.content}</div>
-      </div>`).join('');
+  // ── 评估抽屉 ──
+  function toggleEvalDrawer() {
+    const panel = document.getElementById('eval-drawer-panel');
+    const handle = document.getElementById('eval-drawer-handle');
+    const isOpen = panel.classList.contains('show');
+    if (isOpen) { closeEvalDrawer(); } else { openEvalDrawer(); }
   }
-  function addEvalResult(content) {
-    const timeStr = `${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
-    evalHistory.unshift({ content, time: timeStr });
-    renderEvalHistory();
-    document.getElementById('eval-slide-panel').classList.add('show');
-    document.getElementById('eval-mask').classList.add('show');
+  function openEvalDrawer() {
+    document.getElementById('eval-drawer-panel').classList.add('show');
+    document.getElementById('eval-drawer-handle').classList.add('open');
   }
-  function closeEvalPanel() { document.getElementById('eval-slide-panel').classList.remove('show'); document.getElementById('eval-mask').classList.remove('show'); }
-  function copyLatestEval() {
-    if (evalHistory.length === 0) return;
-    navigator.clipboard.writeText(evalHistory[0].content).then(() => {
-      const btn = document.querySelector('.eval-slide-copy-btn'); btn.textContent = '已复制 ✓'; setTimeout(() => { btn.textContent = '复制最新结果'; }, 1500);
+  function closeEvalDrawer() {
+    document.getElementById('eval-drawer-panel').classList.remove('show');
+    document.getElementById('eval-drawer-handle').classList.remove('open');
+  }
+  function setEvalResult(content) {
+    document.getElementById('eval-drawer-body').textContent = content;
+    openEvalDrawer();
+  }
+  function copyEvalResult() {
+    const text = document.getElementById('eval-drawer-body').textContent;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.eval-drawer-copy-btn'); btn.textContent = '已复制 ✓'; setTimeout(() => { btn.textContent = '复制评估结果'; }, 1500);
     }).catch(() => alert('复制失败'));
   }
-  function clearEvalHistory() { if (confirm('确定要清除所有评估记录吗？')) { evalHistory = []; renderEvalHistory(); } }
 
   async function saveNoteToCloud() {
     const textarea = document.getElementById('notes-textarea'); const content = textarea.value.trim();
     const ch = chapters[activeChapterIndex]; if (!ch || !content) { alert('请先选择章节并写入笔记内容'); return; }
     const btn = document.getElementById('save-note-btn'); btn.disabled = true; btn.textContent = '⏳ 保存中...';
     try {
-      const evalContent = evalHistory.map(e => `[${e.time}] ${e.content}`).join('\n\n');
+      const evalContent = document.getElementById('eval-drawer-body').textContent || '';
       const response = await fetch(API_BASE + '/save-note', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ chapter: ch.name, content, evaluation: evalContent }) });
       const data = await response.json();
       alert(data.success ? '✓ 笔记已保存到阿里云' : '⚠️ 保存失败：' + (data.message || '未知错误'));
@@ -840,8 +803,8 @@
     try {
       const response = await fetch(API_BASE + '/evaluate-note', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ content }) });
       const data = await response.json();
-      if (data.success) { addEvalResult(data.evaluation); } else { addEvalResult('评估失败：' + (data.message || '未知错误')); }
-    } catch (err) { addEvalResult('网络错误，请检查后端服务是否在线。'); }
+      if (data.success) { setEvalResult(data.evaluation); } else { setEvalResult('评估失败：' + (data.message || '未知错误')); }
+    } catch (err) { setEvalResult('网络错误，请检查后端服务是否在线。'); }
     btn.disabled = false; btn.textContent = '📋 提交DS评估';
   }
 
