@@ -153,7 +153,7 @@
   .start-btn:hover { background: #7a9b6e; transform: translateY(-1px); }
 
   /* NOTES VIEW */
-  #notes-view { flex: 1; display: none; flex-direction: column; overflow: hidden; }
+  #notes-view { flex: 1; display: none; flex-direction: column; overflow: hidden; position: relative; }
   .notes-header { padding: 16px 32px; border-bottom: 1px solid var(--border-light); display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
   .notes-title { font-size: 16px; font-weight: 500; color: var(--text-dark); }
   .notes-chip { font-size: 11px; padding: 3px 10px; background: var(--green-pale); color: var(--green-soft); border-radius: 10px; }
@@ -164,8 +164,8 @@
   .notes-textarea { width: 100%; min-height: 100%; background: transparent; border: none; outline: none; font-family: 'Noto Serif SC', serif; font-size: 15px; line-height: 2; color: var(--text-dark); resize: none; }
   .notes-textarea::placeholder { color: var(--text-muted); font-weight: 300; }
 
-  /* 评估按钮和结果面板 */
-  .evaluate-area { padding: 16px 40px 20px; border-top: 1px solid var(--border-light); flex-shrink: 0; display: flex; gap: 12px; align-items: flex-start; }
+  /* 评估按钮 */
+  .evaluate-area { padding: 16px 40px 20px; border-top: 1px solid var(--border-light); flex-shrink: 0; display: flex; gap: 12px; align-items: center; }
   .evaluate-btn, .save-note-btn {
     display: flex; align-items: center; gap: 8px;
     padding: 10px 20px;
@@ -182,37 +182,93 @@
   .save-note-btn:hover { background: #7a5f4e; transform: translateY(-1px); }
   .save-note-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
 
-  .evaluate-result {
-    flex: 1;
-    display: none;
-    background: var(--green-mist);
-    border: 1px solid var(--green-pale);
-    border-radius: 12px;
-    padding: 16px 20px;
-    position: relative;
-    max-height: 300px;
-    overflow-y: auto;
+  /* 右侧滑出面板 */
+  .eval-slide-panel {
+    position: fixed;
+    top: 56px;
+    right: 0;
+    width: 420px;
+    height: calc(100vh - 56px);
+    background: var(--cream);
+    border-left: 1px solid var(--border-light);
+    box-shadow: -8px 0 32px rgba(100, 80, 60, 0.15);
+    z-index: 90;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
   }
-  .evaluate-result.show { display: block; }
-  .evaluate-result::-webkit-scrollbar { width: 4px; }
-  .evaluate-result::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .eval-slide-panel.show {
+    transform: translateX(0);
+  }
 
-  .eval-header {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 10px;
+  .eval-slide-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
   }
-  .eval-title { font-size: 12px; color: var(--green-soft); letter-spacing: 0.08em; font-weight: 500; }
-  .copy-btn {
-    padding: 4px 12px;
-    background: white; border: 1px solid var(--border-light);
-    border-radius: 6px;
-    font-family: 'Noto Serif SC', serif; font-size: 11px;
-    color: var(--text-soft); cursor: pointer;
+  .eval-slide-title {
+    font-size: 12px;
+    color: var(--green-soft);
+    letter-spacing: 0.08em;
+    font-weight: 500;
+  }
+  .eval-slide-close {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; color: var(--text-soft);
     transition: all 0.2s;
   }
-  .copy-btn:hover { border-color: var(--green-light); color: var(--green-soft); background: var(--green-mist); }
+  .eval-slide-close:hover { background: var(--green-mist); color: var(--text-dark); }
 
-  .eval-content { font-size: 13px; color: var(--text-mid); line-height: 1.9; white-space: pre-wrap; }
+  .eval-slide-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 24px;
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.9;
+    white-space: pre-wrap;
+  }
+  .eval-slide-body::-webkit-scrollbar { width: 4px; }
+  .eval-slide-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  .eval-slide-footer {
+    padding: 14px 24px;
+    border-top: 1px solid var(--border-light);
+    flex-shrink: 0;
+    display: flex;
+    gap: 10px;
+  }
+  .eval-slide-copy-btn {
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-family: 'Noto Serif SC', serif;
+    font-size: 12px;
+    color: var(--text-soft);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .eval-slide-copy-btn:hover { border-color: var(--green-light); color: var(--green-soft); background: var(--green-mist); }
+
+  /* 遮罩 */
+  .eval-mask {
+    position: fixed;
+    inset: 0;
+    background: rgba(61, 53, 48, 0.15);
+    z-index: 89;
+    display: none;
+  }
+  .eval-mask.show { display: block; }
 
   /* STUDY VIEW */
   #study-view { flex: 1; display: none; flex-direction: column; overflow: hidden; }
@@ -417,7 +473,6 @@
       <div class="notes-editor">
         <textarea class="notes-textarea" id="notes-textarea" placeholder="在这里写你的学习笔记……&#10;&#10;可以记录核心概念、自己的理解、容易混淆的地方。&#10;笔记会自动保存到当前章节。"></textarea>
       </div>
-      <!-- 评估区域 -->
       <div class="evaluate-area">
         <button class="evaluate-btn" id="evaluate-btn" onclick="evaluateNote()">
           📋 提交DS评估
@@ -425,13 +480,6 @@
         <button class="save-note-btn" id="save-note-btn" onclick="saveNoteToCloud()">
           💾 保存到云端
         </button>
-        <div class="evaluate-result" id="evaluate-result">
-          <div class="eval-header">
-            <span class="eval-title">📋 DS评估结果</span>
-            <button class="copy-btn" onclick="copyEvalResult()">复制</button>
-          </div>
-          <div class="eval-content" id="eval-content"></div>
-        </div>
       </div>
     </div>
 
@@ -476,6 +524,19 @@
       <div id="today-goals"></div>
       <button class="goal-add-btn" onclick="addGoal()">＋ 新增目标</button>
     </div>
+  </div>
+</div>
+
+<!-- EVAL SLIDE PANEL -->
+<div class="eval-mask" id="eval-mask" onclick="closeEvalPanel()"></div>
+<div class="eval-slide-panel" id="eval-slide-panel">
+  <div class="eval-slide-header">
+    <span class="eval-slide-title">📋 DS评估结果</span>
+    <button class="eval-slide-close" onclick="closeEvalPanel()">✕</button>
+  </div>
+  <div class="eval-slide-body" id="eval-slide-body"></div>
+  <div class="eval-slide-footer">
+    <button class="eval-slide-copy-btn" onclick="copyEvalSlideResult()">复制评估结果</button>
   </div>
 </div>
 
@@ -569,7 +630,6 @@
     try { localStorage.setItem('jingshu_' + key, JSON.stringify(val)); } catch {}
   }
 
-  // ── 通知权限 ──
   function requestNotificationPermission() {
     if ('Notification' in window && Notification.permission === 'default') {
       Notification.requestPermission();
@@ -582,7 +642,6 @@
     }
   }
 
-  // ── 音效播放器 ──
   function playChime() {
     try {
       const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -637,7 +696,6 @@
     }
   }
 
-  // ── STREAK ──
   function updateStreak() {
     const today = now.toISOString().slice(0, 10);
     const lastDate = localStorage.getItem('jingshu_last_active');
@@ -675,7 +733,6 @@
     }
   }
 
-  // ── GOALS ──
   function renderGoals() {
     const container = document.getElementById('today-goals');
     container.innerHTML = goals.map((g, i) => `
@@ -697,7 +754,6 @@
     renderGoals();
   }
 
-  // ── CHAPTERS ──
   const STATUS_CYCLE = ['todo', 'done', 'weak'];
   const STATUS_DOT = { done: 'dot-done', weak: 'dot-weak', todo: 'dot-todo' };
 
@@ -730,7 +786,6 @@
     updateWelcomeCard();
     openNotesView(i);
 
-    // 从云端加载笔记
     const ch = chapters[i];
     if (!ch) return;
     try {
@@ -743,15 +798,12 @@
       if (data.success && data.note) {
         document.getElementById('notes-textarea').value = data.note.content || '';
         if (data.note.evaluation) {
-          document.getElementById('eval-content').textContent = data.note.evaluation;
-          document.getElementById('evaluate-result').classList.add('show');
+          document.getElementById('eval-slide-body').textContent = data.note.evaluation;
         }
       } else {
-        // 云端没有，回退到本地
         document.getElementById('notes-textarea').value = notes[ch.name] || '';
       }
     } catch (e) {
-      // 网络失败，回退到本地
       document.getElementById('notes-textarea').value = notes[ch.name] || '';
     }
   }
@@ -764,8 +816,7 @@
     document.getElementById('notes-title').textContent = ch.name;
     document.getElementById('study-chapter-title').textContent = ch.name;
     document.getElementById('notes-textarea').value = notes[ch.name] || '';
-    document.getElementById('evaluate-result').classList.remove('show');
-    document.getElementById('eval-content').textContent = '';
+    closeEvalPanel();
     document.querySelectorAll('.nav-tab:not(.disabled)').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.nav-tab:not(.disabled)')[1].classList.add('active');
   }
@@ -828,7 +879,6 @@
     toggleAddChapter();
   }
 
-  // ── WELCOME CARD ──
   function updateWelcomeCard() {
     const ch = chapters[activeChapterIndex];
     if (ch) {
@@ -863,7 +913,6 @@
       .catch(() => {});
   }
 
-  // ── NOTES AUTO SAVE ──
   let notesTimer = null;
   document.getElementById('notes-textarea').addEventListener('input', function() {
     const ch = chapters[activeChapterIndex];
@@ -876,6 +925,30 @@
       document.getElementById('save-hint').textContent = '已保存 ✓';
     }, 800);
   });
+
+  // ── 右侧滑出面板 ──
+  function openEvalPanel(content) {
+    document.getElementById('eval-slide-body').textContent = content;
+    document.getElementById('eval-slide-panel').classList.add('show');
+    document.getElementById('eval-mask').classList.add('show');
+  }
+
+  function closeEvalPanel() {
+    document.getElementById('eval-slide-panel').classList.remove('show');
+    document.getElementById('eval-mask').classList.remove('show');
+  }
+
+  function copyEvalSlideResult() {
+    const text = document.getElementById('eval-slide-body').textContent;
+    if (!text) return;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.querySelector('.eval-slide-copy-btn');
+      btn.textContent = '已复制 ✓';
+      setTimeout(() => { btn.textContent = '复制评估结果'; }, 1500);
+    }).catch(() => {
+      alert('复制失败，请手动复制');
+    });
+  }
 
   // ── 保存笔记到阿里云 ──
   async function saveNoteToCloud() {
@@ -892,7 +965,7 @@
     btn.textContent = '⏳ 保存中...';
 
     try {
-      const evalContent = document.getElementById('eval-content').textContent || '';
+      const evalContent = document.getElementById('eval-slide-body').textContent || '';
       const response = await fetch(API_BASE + '/save-note', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -922,13 +995,8 @@
     }
 
     const btn = document.getElementById('evaluate-btn');
-    const resultDiv = document.getElementById('evaluate-result');
-    const evalContent = document.getElementById('eval-content');
-
     btn.disabled = true;
     btn.textContent = '⏳ 评估中...';
-    resultDiv.classList.remove('show');
-    evalContent.textContent = '';
 
     try {
       const response = await fetch(API_BASE + '/evaluate-note', {
@@ -939,34 +1007,18 @@
       const data = await response.json();
 
       if (data.success) {
-        evalContent.textContent = data.evaluation;
-        resultDiv.classList.add('show');
+        openEvalPanel(data.evaluation);
       } else {
-        evalContent.textContent = '评估失败：' + (data.message || '未知错误');
-        resultDiv.classList.add('show');
+        openEvalPanel('评估失败：' + (data.message || '未知错误'));
       }
     } catch (err) {
-      evalContent.textContent = '网络错误，请检查后端服务是否在线。';
-      resultDiv.classList.add('show');
+      openEvalPanel('网络错误，请检查后端服务是否在线。');
     }
 
     btn.disabled = false;
     btn.textContent = '📋 提交DS评估';
   }
 
-  function copyEvalResult() {
-    const text = document.getElementById('eval-content').textContent;
-    if (!text) return;
-    navigator.clipboard.writeText(text).then(() => {
-      const btn = document.querySelector('.copy-btn');
-      btn.textContent = '已复制 ✓';
-      setTimeout(() => { btn.textContent = '复制'; }, 1500);
-    }).catch(() => {
-      alert('复制失败，请手动复制');
-    });
-  }
-
-  // ── REPORTS ──
   function renderReports() {
     const list = document.getElementById('report-list');
     if (reports.length === 0) {
@@ -1028,7 +1080,6 @@
     setTimeout(() => openFlashcard(reportData.weak_points), 300);
   }
 
-  // ── ERROR TAGS ──
   const TAG_NAMES = ['概念混淆', '逻辑断层', '记忆不牢', '应用障碍'];
   function updateErrorTag(typeName) {
     const i = TAG_NAMES.indexOf(typeName);
@@ -1041,7 +1092,6 @@
     });
   }
 
-  // ── FLASHCARDS ──
   let pendingCards = [];
 
   function openFlashcard(weakPoints) {
@@ -1113,7 +1163,6 @@
       </div>`).join('');
   }
 
-  // ── REVIEW MODAL ──
   function openReviewModal() {
     const cards = getTodayReviewCards();
     if (cards.length === 0) return;
@@ -1150,7 +1199,6 @@
     document.getElementById('review-modal').classList.add('show');
   }
 
-  // ── TIMER ──
   let seconds = 0, timerInterval = null, breakShown = false, windDownShown = false;
 
   function startTimer(resumeStartTime) {
@@ -1207,7 +1255,6 @@
     document.getElementById('wind-down-modal').classList.remove('show');
   }
 
-  // ── VIEWS ──
   function switchTab(el, view) {
     if (el.classList.contains('disabled')) return;
     document.querySelectorAll('.nav-tab:not(.disabled)').forEach(t => t.classList.remove('active'));
@@ -1225,7 +1272,6 @@
     else { document.getElementById('welcome-view').style.display = 'none'; document.getElementById('study-view').style.display = 'flex'; startTimer(); }
   }
 
-  // ── CHAT ──
   function sendMsg() {
     const box = document.getElementById('input-box'), text = box.value.trim();
     if (!text) return;
@@ -1240,7 +1286,6 @@
   function handleKey(e) { if (e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();} }
   function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; }
 
-  // ── CLOSE MODALS ──
   document.querySelectorAll('.modal-overlay').forEach(el => {
     el.addEventListener('click', e => { if(e.target===el) el.classList.remove('show'); });
   });
